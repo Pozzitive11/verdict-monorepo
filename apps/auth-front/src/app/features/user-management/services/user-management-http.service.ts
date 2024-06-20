@@ -1,63 +1,86 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 
-import { Injectable, inject } from '@angular/core'
-import { environment } from 'src/environments/environment'
-import { User, UserPermissionByApp, UserRole } from '../models/user.model'
-import { Permission, PermissionByRole } from '../../role-management/models/role.model'
+import { Injectable, inject } from '@angular/core';
+
+import { User, UserPermissionByApp, UserRole } from '../models/user.model';
+import {
+  Permission,
+  PermissionByRole,
+} from '../../role-management/models/role.model';
+import { environment } from 'apps/auth-front/src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserManagementHttpService {
-  private http = inject(HttpClient)
+  private http = inject(HttpClient);
 
-  userUrl = (environment.BACKEND_URL || window.location.origin) + environment.API_BASE_URL + '/user'
+  userUrl =
+    (environment.BACKEND_URL || window.location.origin) +
+    environment.API_BASE_URL +
+    '/user';
   permissionUrl =
-    (environment.BACKEND_URL || window.location.origin) + environment.API_BASE_URL + '/structure/permission'
+    (environment.BACKEND_URL || window.location.origin) +
+    environment.API_BASE_URL +
+    '/structure/permission';
 
   // USER
   getUsersList() {
-    return this.http.get<{ users: User[] }>(this.userUrl)
+    return this.http.get<{ users: User[] }>(this.userUrl);
   }
 
   getUserInfo(userId: number) {
-    return this.http.get<User>(`${this.userUrl}/${userId}`)
+    return this.http.get<User>(`${this.userUrl}/${userId}`);
   }
 
   getUserRoles(userId: number) {
-    return this.http.get<{ roles: UserRole[] }>(`${this.userUrl}/${userId}/roles`)
+    return this.http.get<{ roles: UserRole[] }>(
+      `${this.userUrl}/${userId}/roles`
+    );
   }
   getUserPermissions(userId: number) {
-    return this.http.get<{ permissions_by_app: PermissionByRole[] }>(`${this.userUrl}/${userId}/permissions`)
+    return this.http.get<{ permissions_by_app: PermissionByRole[] }>(
+      `${this.userUrl}/${userId}/permissions`
+    );
   }
 
   getAvailableRoles(userId: number) {
-    return this.http.get<{ roles: UserRole[] }>(`${this.userUrl}/${userId}/roles/available`)
+    return this.http.get<{ roles: UserRole[] }>(
+      `${this.userUrl}/${userId}/roles/available`
+    );
   }
   getAvailablePermissionsByApp(userId: number, appId: number) {
-    return this.http.get<{ permissions: UserPermissionByApp[] }>(`${this.userUrl}/${userId}/permissions/${appId}`)
+    return this.http.get<{ permissions: UserPermissionByApp[] }>(
+      `${this.userUrl}/${userId}/permissions/${appId}`
+    );
   }
 
   // PERMISSIONS
   addRoleToUSer(userId: number, roleIds: number[]) {
-    return this.http.post(`${this.permissionUrl}/role_user`, { UserId: userId, RoleIds: roleIds })
+    return this.http.post(`${this.permissionUrl}/role_user`, {
+      UserId: userId,
+      RoleIds: roleIds,
+    });
   }
   deleteUserRole(userId: number, roleIds: number[]) {
     const options = {
       body: {
         UserId: userId,
-        RoleIds: roleIds
-      }
-    }
-    return this.http.delete(`${this.permissionUrl}/role_user`, options)
+        RoleIds: roleIds,
+      },
+    };
+    return this.http.delete(`${this.permissionUrl}/role_user`, options);
   }
   addUserPermission(userId: number, permissionIds: number[]) {
-    return this.http.post(`${this.permissionUrl}/perm_user`, { UserId: userId, PermissionIds: permissionIds })
+    return this.http.post(`${this.permissionUrl}/perm_user`, {
+      UserId: userId,
+      PermissionIds: permissionIds,
+    });
   }
   deleteUserPermission(userId: number, permissionIds: number[]) {
     const options = {
-      body: { UserId: userId, PermissionIds: permissionIds }
-    }
-    return this.http.delete(`${this.permissionUrl}/perm_user`, options)
+      body: { UserId: userId, PermissionIds: permissionIds },
+    };
+    return this.http.delete(`${this.permissionUrl}/perm_user`, options);
   }
 }

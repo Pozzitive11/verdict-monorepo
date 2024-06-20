@@ -11,7 +11,7 @@ import { MessageBoxComponent } from './shared/components/message-box/message-box
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
   standalone: true,
   imports: [
     NgIf,

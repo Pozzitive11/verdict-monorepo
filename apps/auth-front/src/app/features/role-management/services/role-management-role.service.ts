@@ -4,7 +4,7 @@ import { Permission, Role } from '../models/role.model'
 import { RoleManagementHttpService } from './role-management-http.service'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
-import { MessageHandlingService } from 'src/app/shared/services/message-handling.service'
+import { MessageHandlingService } from '../../../shared/services/message-handling.service';
 
 @Injectable({
   providedIn: 'root'

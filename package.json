@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
+    "start-front": "ng serve --configuration developmentOnlyFront",
     "test": "nx test"
   },
   "private": true,
@@ -17,7 +18,14 @@
     "@angular/platform-browser": "~18.0.0",
     "@angular/platform-browser-dynamic": "~18.0.0",
     "@angular/router": "~18.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^17.0.0",
+    "@ng-select/ng-select": "^13.2.0",
     "@nx/angular": "19.3.0",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.10.5",
+    "file-saver": "^2.0.5",
+    "jwt-decode": "^4.0.0",
+    "ng-multiselect-dropdown": "^1.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
@@ -41,6 +49,7 @@
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
+    "@types/file-saver": "^2.0.7",
     "@types/jest": "^29.4.0",
     "@types/node": "18.16.9",
     "@typescript-eslint/eslint-plugin": "^7.3.0",
