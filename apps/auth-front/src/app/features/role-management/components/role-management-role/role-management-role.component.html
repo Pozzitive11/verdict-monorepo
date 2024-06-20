@@ -1,0 +1,122 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">{{ role?.Name }}</h5>
+    <div class="d-flex align-items-center gap-3">
+      <app-modal [buttonName]="'Оновити роль'" [modalName]="'Оновити роль'" [buttonClasses]="'btn-outline-info'">
+        <div class="form-group mb-3">
+          <label for="name">Назва ролі</label>
+          <input
+            [(ngModel)]="updateRoleName"
+            type="text"
+            class="form-control"
+            id="name"
+            name="roleName"
+            placeholder="Напишіть назву ролі"
+          />
+        </div>
+        <button type="button" class="btn btn-primary" [disabled]="" (click)="updateRole()">Оновити роль</button>
+      </app-modal>
+      <button class="btn btn-danger" style="width: 160.17px;" (click)="roleManagementRoleService.deleteRole()">Видалити роль</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="d-flex align-items-center gap-3 mb-3">
+      <app-modal
+        [buttonName]="'Додати дозволи'"
+        [modalName]="'Додати дозволи'"
+        [buttonClasses]="'btn-outline-primary'"
+        (modalClosed)="roleManagementPermissionService.clearAddPermissionUpdateModalValues()"
+      >
+        <div class="mb-4">
+          <ng-select
+            [items]="roleManagementPermissionService.apps"
+            bindLabel="Name"
+            placeholder="Оберіть додаток"
+            [(ngModel)]="roleManagementPermissionService.selectedAppForUpdate"
+            (change)="getSelectedAppForUpdate()"
+          >
+          </ng-select>
+        </div>
+        <div class="mb-4">
+          <ng-select
+            [items]="roleManagementPermissionService.permission$ | async"
+            bindLabel="Action"
+            placeholder="Оберіть дозволи"
+            [(ngModel)]="roleManagementPermissionService.selectedPermission"
+            [disabled]="!roleManagementPermissionService.selectedAppForUpdate"
+            [multiple]="true"
+            [closeOnSelect]="false"
+          >
+          </ng-select>
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="
+            !roleManagementPermissionService.selectedPermission || !roleManagementPermissionService.selectedAppForUpdate
+          "
+          (click)="addRolePermissions()"
+        >
+          Додати дозволи
+        </button>
+      </app-modal>
+      <app-modal
+        [buttonName]="'Видалити дозволи'"
+        [modalName]="'Видалити дозволи'"
+        [buttonClasses]="'btn-danger'"
+        (modalClosed)="roleManagementPermissionService.clearAddPermissionDeleteModalValues()"
+      >
+        <div class="mb-4">
+          <ng-select
+            [items]="roleManagementPermissionService.permissionApps"
+            bindLabel="app"
+            placeholder="Оберіть додаток"
+            [(ngModel)]="roleManagementPermissionService.selectedAppForDelete"
+            (change)="getSelectedAppForDelete()"
+          >
+          </ng-select>
+        </div>
+        <div class="mb-4">
+          <ng-select
+            [items]="roleManagementPermissionService.actionsByRoleApp"
+            bindLabel="Action"
+            placeholder="Оберіть дозволи"
+            [(ngModel)]="roleManagementPermissionService.selectedAppActionForDelete"
+            [disabled]="!roleManagementPermissionService.actionsByRoleApp"
+            [multiple]="true"
+            [closeOnSelect]="false"
+          >
+          </ng-select>
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="deletePermission()"
+          [disabled]="
+            !roleManagementPermissionService.selectedAppForDelete ||
+            !roleManagementPermissionService.selectedAppActionForDelete
+          "
+        >
+          Видалити дозволи
+        </button>
+      </app-modal>
+    </div>
+
+    @if (!isRolePermissionGroupsEmpty) {
+    <div class="permission-list">
+      <div class="card" *ngFor="let app of roleManagementRoleService.rolePermissionsGroups | keyvalue">
+        <div class="card-header">
+          <h4 class="card-title text-center">{{ app.key }}</h4>
+        </div>
+        <div class="card-body d-flex justify-content-start align-items-center flex-column">
+          <ul class="list-group list-group-flush w-100">
+            <li class="list-group-item text-center" *ngFor="let permission of app.value">{{ permission.Action }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div class="alert alert-secondary text-center">Дозволи відсутні</div>
+    }
+  </div>
+</div>

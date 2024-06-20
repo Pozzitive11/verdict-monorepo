@@ -1,0 +1,36 @@
+<app-modal [modalName]="'Створити проект'" [buttonName]="'Створити проект'" [buttonClasses]="'btn-outline-primary'" (modalClosed)="clearValues()">
+  <form>
+    <div class="form-group mb-3">
+      <label for="name">Назва проекту</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="Напишіть назву проекту"
+        [(ngModel)]="projectManagementProjectService.createProjectName"
+        name="projectName"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="description">Опис проекту</label>
+      <input
+        type="text"
+        [(ngModel)]="projectManagementProjectService.createProjectDescription"
+        class="form-control"
+        id="description"
+        name="projectDescription"
+        placeholder="Напишіть опис проекту"
+      />
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="
+        !projectManagementProjectService.createProjectName || !projectManagementProjectService.createProjectDescription
+      "
+      (click)="projectManagementProjectService.createProject()"
+    >
+      Створити проект
+    </button>
+  </form>
+</app-modal>

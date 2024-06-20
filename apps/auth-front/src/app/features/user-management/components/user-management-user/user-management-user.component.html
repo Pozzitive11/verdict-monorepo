@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">{{ user?.Login }}</h5>
+    <div class="d-flex align-items-center gap-3"></div>
+  </div>
+  <div class="card-body">
+   <app-user-management-roles-list></app-user-management-roles-list>
+    <app-user-management-permissions-list [user]="user"></app-user-management-permissions-list>
+  </div>
+</div>

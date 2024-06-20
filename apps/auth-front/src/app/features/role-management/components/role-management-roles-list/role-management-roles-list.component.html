@@ -1,0 +1,19 @@
+<div class="row mb-4">
+  <div class="col-12">
+    <ng-select
+      [items]="roleManagementRoleService.roles$ | async"
+      bindLabel="Name"
+      placeholder="Оберіть роль"
+      [(ngModel)]="roleManagementRoleService.selectedRole"
+      (change)="roleSelection()"
+    >
+    </ng-select>
+  </div>
+</div>
+@if (roleManagementRoleService.roleLoader) {
+<div class="spinner-grow text-primary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+} @if ((roleManagementRoleService.role$ | async) && roleManagementRoleService.selectedRole) {
+<app-role-management-role [role]="roleManagementRoleService.role$ | async"></app-role-management-role>
+}
