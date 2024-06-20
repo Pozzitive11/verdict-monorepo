@@ -12,8 +12,8 @@
       "options": {
         "outputPath": "dist/apps/auth-front",
         "index": "apps/auth-front/src/index.html",
+        "polyfills": ["zone.js", "apps/auth-front/src/polyfills.ts"],
         "browser": "apps/auth-front/src/main.ts",
-        "polyfills": ["zone.js"],
         "tsConfig": "apps/auth-front/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -22,7 +22,10 @@
             "input": "apps/auth-front/public"
           }
         ],
-        "styles": ["apps/auth-front/src/styles.scss"],
+        "styles": [
+          "apps/auth-front/src/styles.scss",
+          "node_modules/bootstrap/dist/css/bootstrap.min.css"
+        ],
         "scripts": []
       },
       "configurations": {

@@ -2,7 +2,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ProjectManagementAppService } from '../../services/project-management-app.service';
-import { ModalComponent } from 'apps/auth-front/src/app/shared/components/modal/modal.component';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-project-management-create-app',

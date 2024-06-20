@@ -5,7 +5,7 @@ import { Project } from '../../models/project.model';
 import { ProjectManagementProjectService } from '../../services/project-management-project.service';
 import { ProjectManagementAppsListComponent } from '../project-management-apps-list/project-management-apps-list.component';
 import { ProjectManagementAppService } from '../../services/project-management-app.service';
-import { ModalComponent } from 'apps/auth-front/src/app/shared/components/modal/modal.component';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 @Component({
   selector: 'app-project-management-project',
   standalone: true,

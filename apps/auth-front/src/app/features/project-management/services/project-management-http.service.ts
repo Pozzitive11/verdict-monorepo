@@ -4,7 +4,7 @@ import { Injectable, inject } from '@angular/core';
 
 import { App, NewApp, Project, UpdateApp } from '../models/project.model';
 import { Observable } from 'rxjs';
-import { environment } from 'apps/auth-front/src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',

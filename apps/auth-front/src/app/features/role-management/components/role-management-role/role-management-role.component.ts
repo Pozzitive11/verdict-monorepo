@@ -12,8 +12,8 @@ import { Permission, Role } from '../../models/role.model';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { RoleManagementPermissionService } from '../../services/role-management-permission.service';
-import { UtilFunctions } from 'apps/auth-front/src/app/shared/utils/util.functions';
-import { ModalComponent } from 'apps/auth-front/src/app/shared/components/modal/modal.component';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { UtilFunctions } from 'src/app/shared/utils/util.functions';
 
 @Component({
   selector: 'app-role-management-role',

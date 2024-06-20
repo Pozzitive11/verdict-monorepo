@@ -18,5 +18,12 @@
       "@angular-monorepo/shared": ["shared/src/index.ts"]
     }
   },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictPropertyInitialization": false,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
   "exclude": ["node_modules", "tmp"]
 }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { App } from '../../models/project.model';
 import { ProjectManagementAppService } from '../../services/project-management-app.service';
 import { FormsModule } from '@angular/forms';
-import { ModalComponent } from 'apps/auth-front/src/app/shared/components/modal/modal.component';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-project-management-app',

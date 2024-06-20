@@ -14,7 +14,7 @@ import {
   PaymentsProcessingInfo,
   ServerDataStringList,
 } from '../../data-models/server-data.model';
-import { environment } from 'apps/auth-front/src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',

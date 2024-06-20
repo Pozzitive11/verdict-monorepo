@@ -7,7 +7,7 @@ import {
   Permission,
   PermissionByRole,
 } from '../../role-management/models/role.model';
-import { environment } from 'apps/auth-front/src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',

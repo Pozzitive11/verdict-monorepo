@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 
 import { Injectable, inject } from '@angular/core';
-import { environment } from 'apps/auth-front/src/environments/environment';
 
 import { Permission, PermissionByRole, Role } from '../models/role.model';
 import { App } from '../../project-management/models/project.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',

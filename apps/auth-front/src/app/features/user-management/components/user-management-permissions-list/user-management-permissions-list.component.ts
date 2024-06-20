@@ -7,7 +7,7 @@ import { UserManagementRoleComponent } from '../user-management-role/user-manage
 import { UserManagementUserPermissionsService } from '../../services/user-management-user-permissions.service';
 import { User } from '../../models/user.model';
 import { RoleManagementPermissionService } from '../../../role-management/services/role-management-permission.service';
-import { ModalComponent } from 'apps/auth-front/src/app/shared/components/modal/modal.component';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-user-management-permissions-list',
