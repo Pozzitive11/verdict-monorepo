@@ -12,7 +12,11 @@
       "options": {
         "outputPath": "dist/apps/auth-front",
         "index": "apps/auth-front/src/index.html",
-        "polyfills": ["zone.js", "apps/auth-front/src/polyfills.ts"],
+        "polyfills": [
+          "zone.js",
+          "apps/auth-front/src/polyfills.ts",
+          "@angular/localize/init"
+        ],
         "browser": "apps/auth-front/src/main.ts",
         "tsConfig": "apps/auth-front/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
