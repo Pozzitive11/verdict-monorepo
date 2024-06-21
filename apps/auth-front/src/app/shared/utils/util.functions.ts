@@ -1,10 +1,10 @@
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { saveAs } from 'file-saver';
-import { FilterModel } from '../models/filter.model';
-import { HttpResponse } from '@angular/common/http';
-import { b64ToUtf8 } from './b64.util';
-import { isDictionaryFullModel } from '../models/dictionary-full.model';
-import { dateFromString } from './dates.util';
+import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
+import { saveAs } from "file-saver";
+import { FilterModel } from "../models/filter.model";
+import { HttpResponse } from "@angular/common/http";
+import { b64ToUtf8 } from "./b64.util";
+import { isDictionaryFullModel } from "../models/dictionary-full.model";
+import { dateFromString } from "./dates.util";
 
 interface CreditInfo {
   token: string;
@@ -19,17 +19,13 @@ interface CreditInfo {
 }
 
 export class UtilFunctions {
-  static formatDate(
-    date: Date,
-    time: boolean = false,
-    format?: string
-  ): string {
-    const day = (date.getDate() < 10 ? '0' : '') + date.getDate();
-    const month = (date.getMonth() + 1 < 10 ? '0' : '') + (date.getMonth() + 1);
-    const year = '' + date.getFullYear();
-    const hours = (date.getHours() < 10 ? '0' : '') + date.getHours();
-    const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
-    const seconds = (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
+  static formatDate(date: Date, time = false, format?: string): string {
+    const day = (date.getDate() < 10 ? "0" : "") + date.getDate();
+    const month = (date.getMonth() + 1 < 10 ? "0" : "") + (date.getMonth() + 1);
+    const year = "" + date.getFullYear();
+    const hours = (date.getHours() < 10 ? "0" : "") + date.getHours();
+    const minutes = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
+    const seconds = (date.getSeconds() < 10 ? "0" : "") + date.getSeconds();
 
     if (!format)
       return time
@@ -37,32 +33,29 @@ export class UtilFunctions {
         : `${day}.${month}.${year}`;
     else
       return format
-        .replace('%d', day)
-        .replace('%m', month)
-        .replace('%Y', year)
-        .replace('%H', hours)
-        .replace('%M', minutes)
-        .replace('%S', seconds);
+        .replace("%d", day)
+        .replace("%m", month)
+        .replace("%Y", year)
+        .replace("%H", hours)
+        .replace("%M", minutes)
+        .replace("%S", seconds);
   }
 
   static isNullToList(match: RegExpMatchArray | null): string[] {
-    return match == null ? [''] : match;
+    return match == null ? [""] : match;
   }
 
-  static formatNgbDate(
-    date: NgbDate | null,
-    format: string = '%d.%m.%Y'
-  ): string {
+  static formatNgbDate(date: NgbDate | null, format = "%d.%m.%Y"): string {
     if (!date)
       throw Error(
-        'Something wrong happened with the formatDateNgb, somehow we are getting null here'
+        "Something wrong happened with the formatDateNgb, somehow we are getting null here",
       );
 
-    const day = (date.day < 10 ? '0' : '') + date.day;
-    const month = (date.month < 10 ? '0' : '') + date.month;
-    const year = '' + date.year;
+    const day = (date.day < 10 ? "0" : "") + date.day;
+    const month = (date.month < 10 ? "0" : "") + date.month;
+    const year = "" + date.year;
 
-    return format.replace('%d', day).replace('%m', month).replace('%Y', year);
+    return format.replace("%d", day).replace("%m", month).replace("%Y", year);
   }
 
   static recreateNgbDate(date: NgbDate | null) {
@@ -72,7 +65,7 @@ export class UtilFunctions {
 
   static createNgbDateFromString(
     date: string | null,
-    defaultDate?: NgbDate
+    defaultDate?: NgbDate,
   ): NgbDate | null {
     if (!date) return null;
     const jsDate = dateFromString(date);
@@ -82,17 +75,17 @@ export class UtilFunctions {
     return new NgbDate(
       jsDate.getFullYear(),
       jsDate.getMonth() + 1,
-      jsDate.getDate()
+      jsDate.getDate(),
     );
   }
 
   static createNgbDateFromDate(
     date: Date | string | null,
-    defaultDate?: Date
+    defaultDate?: Date,
   ): NgbDate | null {
     if (!date && !defaultDate) return null;
 
-    if (!(date instanceof Date) && typeof date === 'string')
+    if (!(date instanceof Date) && typeof date === "string")
       date = new Date(date);
     const jsDate = date || defaultDate;
     if (!jsDate) return null;
@@ -100,13 +93,13 @@ export class UtilFunctions {
     return new NgbDate(
       jsDate.getFullYear(),
       jsDate.getMonth() + 1,
-      jsDate.getDate()
+      jsDate.getDate(),
     );
   }
 
   static createNgbDate(
     date?: string | Date | null,
-    defaultDate?: Date
+    defaultDate?: Date,
   ): NgbDate | null {
     if (!date) return null;
 
@@ -115,15 +108,15 @@ export class UtilFunctions {
     else
       return this.createNgbDateFromString(
         date,
-        this.createNgbDateFromDate(defaultDate || null) || undefined
+        this.createNgbDateFromDate(defaultDate || null) || undefined,
       );
   }
 
   static ngbDateFromString(date: string, format?: string): NgbDate {
     // dateNumbers
-    const dn: number[] = [...date.matchAll(/\d+/g)].map((value) => +value);
+    const dn: number[] = [...date.matchAll(/\d+/g)].map(value => +value);
     switch (format) {
-      case 'dd.mm.yyyy':
+      case "dd.mm.yyyy":
         return new NgbDate(dn[2], dn[1], dn[0]);
       default:
         return new NgbDate(dn[0], dn[1], dn[2]);
@@ -134,7 +127,7 @@ export class UtilFunctions {
     return this.formatDate(
       new Date(ngbDate.year, ngbDate.month - 1, ngbDate.day),
       false,
-      '%Y-%m-%d'
+      "%Y-%m-%d",
     );
   }
 
@@ -145,58 +138,58 @@ export class UtilFunctions {
 
   static getObjectKeys(array: { [key: string]: any }[]): string[] {
     if (array.length === 0) return [];
-    return Object.keys(array[0]).filter((key) => key !== 'id');
+    return Object.keys(array[0]).filter(key => key !== "id");
   }
 
   // NumberFromString
   static nfs(value: string): number {
-    const num: number = Number(value.replace(/\s/g, '').replace(/,/, '.'));
+    const num = Number(value.replace(/\s/g, "").replace(/,/, "."));
     return num ? num : 0;
   }
 
   static formatNumber(
     value: number | string | undefined,
-    precision: number = 2
+    precision = 2,
   ): string {
-    if (value == undefined) return '';
+    if (value == undefined) return "";
 
     try {
       value = +value;
     } catch (e) {
-      return '';
+      return "";
     }
     if (value === Math.floor(value)) value = value.toFixed(0);
     else value = value.toFixed(precision);
 
-    if (!value) return '';
+    if (!value) return "";
 
-    let number: string = value.replace(/[^\d.,]/g, '');
+    const number: string = value.replace(/[^\d.,]/g, "");
 
-    let parts = number.split(/[.,]/g);
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
+    const parts = number.split(/[.,]/g);
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, "\u00A0");
     if (parts.length > 1) parts[1] = parts[1].slice(0, 2);
 
-    return parts.join('.');
+    return parts.join(".");
   }
 
   static downloadXlsx(
     file: Blob,
     name: string,
-    type: 'dmHM' | 'dmY' | 'dmYHMS' | null = 'dmHM'
+    type: "dmHM" | "dmY" | "dmYHMS" | null = "dmHM",
   ) {
-    name = name.replace(/\s*\.xlsx/, '');
+    name = name.replace(/\s*\.xlsx/, "");
     const now = new Date();
     let filename: string;
     switch (type) {
-      case 'dmHM':
+      case "dmHM":
         filename = `${name} ${now.getDate()}${
           now.getMonth() + 1
         }_${now.getHours()}${now.getMinutes()}.xlsx`;
         break;
-      case 'dmY':
+      case "dmY":
         filename = `${name} ${this.formatDate(now)}.xlsx`;
         break;
-      case 'dmYHMS':
+      case "dmYHMS":
         filename = `${name} ${this.formatDate(now, true)}.xlsx`;
         break;
       default:
@@ -209,17 +202,17 @@ export class UtilFunctions {
   static saveFileFromHttp(
     res: HttpResponse<Blob>,
     decodeB64: boolean,
-    name?: string
+    name?: string,
   ) {
     let filename =
-      name || res.headers.get('Content-Disposition')?.split('filename=')[1];
-    if (decodeB64) filename = b64ToUtf8(filename || '');
-    if (!res.body) throw Error('Не вдалося завантажити файл');
+      name || res.headers.get("Content-Disposition")?.split("filename=")[1];
+    if (decodeB64) filename = b64ToUtf8(filename || "");
+    if (!res.body) throw Error("Не вдалося завантажити файл");
 
-    const filetype = res.headers.get('Content-Type');
+    const filetype = res.headers.get("Content-Type");
 
     const file = new Blob([res.body], {
-      type: filetype || 'application/octet-stream',
+      type: filetype || "application/octet-stream",
     });
     saveAs(file, filename);
   }
@@ -227,36 +220,36 @@ export class UtilFunctions {
   static fileFromHttpToBlob(
     res: HttpResponse<Blob>,
     decodeB64: boolean,
-    name?: string
+    name?: string,
   ): [Blob, string | undefined] {
     let filename =
-      name || res.headers.get('Content-Disposition')?.split('filename=')[1];
-    if (decodeB64) filename = b64ToUtf8(filename || '');
+      name || res.headers.get("Content-Disposition")?.split("filename=")[1];
+    if (decodeB64) filename = b64ToUtf8(filename || "");
 
-    if (!res.body) throw Error('Не вдалося завантажити файл');
+    if (!res.body) throw Error("Не вдалося завантажити файл");
 
-    const filetype = res.headers.get('Content-Type');
+    const filetype = res.headers.get("Content-Type");
 
     return [
-      new Blob([res.body], { type: filetype || 'application/octet-stream' }),
+      new Blob([res.body], { type: filetype || "application/octet-stream" }),
       filename,
     ];
   }
 
   static filterData(
     partOfData: { [key: string]: any }[],
-    textFilters: { col: string; value: string }[]
+    textFilters: { col: string; value: string }[],
   ) {
-    for (let filter of textFilters) {
+    for (const filter of textFilters) {
       // * - показать все пустые строки
       // ** - показать все не пустые строки
-      if (filter.value === '*') {
-        partOfData = partOfData.filter((value) => !value[filter.col]);
-      } else if (filter.value === '**') {
-        partOfData = partOfData.filter((value) => !!value[filter.col]);
+      if (filter.value === "*") {
+        partOfData = partOfData.filter(value => !value[filter.col]);
+      } else if (filter.value === "**") {
+        partOfData = partOfData.filter(value => !!value[filter.col]);
       } else {
-        partOfData = partOfData.filter((value) =>
-          String(value[filter.col]).toLowerCase().includes(filter.value)
+        partOfData = partOfData.filter(value =>
+          String(value[filter.col]).toLowerCase().includes(filter.value),
         );
       }
     }
@@ -266,9 +259,9 @@ export class UtilFunctions {
 
   static filterDataExtended(
     data: { [key: string]: any }[],
-    filters: { col: string; filter: FilterModel }[]
+    filters: { col: string; filter: FilterModel }[],
   ) {
-    for (let filterInfo of filters) {
+    for (const filterInfo of filters) {
       const { col, filter } = filterInfo;
       const {
         not,
@@ -284,7 +277,7 @@ export class UtilFunctions {
       } = filter;
 
       const isSupportedArrayType = (value: any) =>
-        ['number', 'string'].includes(typeof value) ||
+        ["number", "string"].includes(typeof value) ||
         value === null ||
         value === undefined;
 
@@ -294,8 +287,8 @@ export class UtilFunctions {
           return !value[col];
         };
 
-        data = data.filter((value) =>
-          not ? !conditionIsTrue(value) : conditionIsTrue(value)
+        data = data.filter(value =>
+          not ? !conditionIsTrue(value) : conditionIsTrue(value),
         );
         continue;
       }
@@ -304,42 +297,42 @@ export class UtilFunctions {
         const conditionIsTrue = (value: { [key: string]: any }) => {
           if (isDictionaryFullModel(value[col]))
             return value[col].Name.toLowerCase().includes(
-              includes.toLowerCase()
+              includes.toLowerCase(),
             );
           return String(value[col])
             .toLowerCase()
             .includes(includes.toLowerCase());
         };
-        data = data.filter((value) =>
-          not ? !conditionIsTrue(value) : conditionIsTrue(value)
+        data = data.filter(value =>
+          not ? !conditionIsTrue(value) : conditionIsTrue(value),
         );
       }
       if (startsWith) {
         const conditionIsTrue = (value: { [key: string]: any }) => {
           if (isDictionaryFullModel(value[col]))
             return value[col].Name.toLowerCase().startsWith(
-              startsWith.toLowerCase()
+              startsWith.toLowerCase(),
             );
           return String(value[col])
             .toLowerCase()
             .startsWith(startsWith.toLowerCase());
         };
-        data = data.filter((value) =>
-          not ? !conditionIsTrue(value) : conditionIsTrue(value)
+        data = data.filter(value =>
+          not ? !conditionIsTrue(value) : conditionIsTrue(value),
         );
       }
       if (endsWith) {
         const conditionIsTrue = (value: { [key: string]: any }) => {
           if (isDictionaryFullModel(value[col]))
             return value[col].Name.toLowerCase().endsWith(
-              endsWith.toLowerCase()
+              endsWith.toLowerCase(),
             );
           return String(value[col])
             .toLowerCase()
             .endsWith(endsWith.toLowerCase());
         };
-        data = data.filter((value) =>
-          not ? !conditionIsTrue(value) : conditionIsTrue(value)
+        data = data.filter(value =>
+          not ? !conditionIsTrue(value) : conditionIsTrue(value),
         );
       }
       if (eq) {
@@ -350,13 +343,13 @@ export class UtilFunctions {
             return value[col].Name == eq;
           return value[col] == eq;
         };
-        data = data.filter((value) =>
-          not ? !conditionIsTrue(value) : conditionIsTrue(value)
+        data = data.filter(value =>
+          not ? !conditionIsTrue(value) : conditionIsTrue(value),
         );
       }
 
       if (le) {
-        data = data.filter((value) => {
+        data = data.filter(value => {
           if (Array.isArray(value[col])) {
             if (
               value[col].length > 0 &&
@@ -370,7 +363,7 @@ export class UtilFunctions {
         });
       }
       if (ge) {
-        data = data.filter((value) => {
+        data = data.filter(value => {
           if (Array.isArray(value[col])) {
             if (
               value[col].length > 0 &&
@@ -384,7 +377,7 @@ export class UtilFunctions {
         });
       }
       if (less) {
-        data = data.filter((value) => {
+        data = data.filter(value => {
           if (Array.isArray(value[col])) {
             if (
               value[col].length > 0 &&
@@ -398,7 +391,7 @@ export class UtilFunctions {
         });
       }
       if (greater) {
-        data = data.filter((value) => {
+        data = data.filter(value => {
           if (Array.isArray(value[col])) {
             if (
               value[col].length > 0 &&
@@ -418,32 +411,32 @@ export class UtilFunctions {
 
   static sortData(
     data: { [key: string]: any }[],
-    sortingFilters: { col: string; ascending: boolean }[]
+    sortingFilters: { col: string; ascending: boolean }[],
   ) {
     const isSupportedArrayType = (value: any) =>
-      ['number', 'string'].includes(typeof value) ||
+      ["number", "string"].includes(typeof value) ||
       value === null ||
       value === undefined;
 
-    for (let filter of sortingFilters) {
+    for (const filter of sortingFilters) {
       data.sort((a, b) => {
         // SORTING FOR ARRAYS VALUES
         const aIsArray = Array.isArray(a[filter.col]);
         const bIsArray = Array.isArray(b[filter.col]);
         if (aIsArray && bIsArray) {
           const supportedTypesInA = a[filter.col].some((val: any) =>
-            isSupportedArrayType(val)
+            isSupportedArrayType(val),
           );
           const supportedTypesInB = b[filter.col].some((val: any) =>
-            isSupportedArrayType(val)
+            isSupportedArrayType(val),
           );
 
           if (supportedTypesInA && supportedTypesInB) {
             const aMin = Math.min(
-              ...a[filter.col].filter((val: any) => isSupportedArrayType(val))
+              ...a[filter.col].filter((val: any) => isSupportedArrayType(val)),
             );
             const bMin = Math.min(
-              ...b[filter.col].filter((val: any) => isSupportedArrayType(val))
+              ...b[filter.col].filter((val: any) => isSupportedArrayType(val)),
             );
             if (Number.isNaN(aMin) && Number.isNaN(bMin)) return 0;
             else if (Number.isNaN(aMin)) return -1;
@@ -483,7 +476,7 @@ export class UtilFunctions {
   static uploadDocToDocumentOnline(
     file: File,
     creditInfo: CreditInfo,
-    listener: (this: XMLHttpRequest, ev: Event) => any
+    listener: (this: XMLHttpRequest, ev: Event) => any,
   ) {
     // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjY0MDg3N2Q4LWY1NzAtNDM3Zi1hZTJhLWVkMjU4ZWYxMGRkNCIsIkF1dGhUaW1lIjoiMTIvMDQvMjAxOSAxNDo0NzoyMSIsIm5iZiI6MTU3NTQ3MDg0MSwiZXhwIjoxNzMzMTUwODQxLCJpc3MiOiJodHRwOi8vYXBpLmRvY3VtZW50cy5vbmxpbmUiLCJhdWQiOiJodHRwOi8vYXBpLmRvY3VtZW50cy5vbmxpbmUifQ.yeSfc-LxCdC-LzhhERu_ot3aUh4zvllH-eg00Kph7s4'
     // const clientId = 'ed169af7-e44b-4faa-871d-c7895462cafc'
@@ -500,38 +493,38 @@ export class UtilFunctions {
       projectName,
     } = creditInfo;
 
-    let data = new FormData();
-    data.append('testFile', file);
-    data.append('Name', filename);
-    data.append('Number', `${contractId}`);
-    data.append('Path', '3'); // Path of document 0 = Default, 1 = Bin, 2 = Task, 3 = Archive, 4 = Package
-    data.append('Metadata.Шлях до файлу', pathToFile);
-    data.append('Metadata.НКС', `${contractId}`);
-    data.append('Metadata.№ договору', agreementNum);
-    data.append('Metadata.Боржник', clientName);
-    data.append('Metadata.ІПН', inn);
-    data.append('Metadata.Проект', projectName);
+    const data = new FormData();
+    data.append("testFile", file);
+    data.append("Name", filename);
+    data.append("Number", `${contractId}`);
+    data.append("Path", "3"); // Path of document 0 = Default, 1 = Bin, 2 = Task, 3 = Archive, 4 = Package
+    data.append("Metadata.Шлях до файлу", pathToFile);
+    data.append("Metadata.НКС", `${contractId}`);
+    data.append("Metadata.№ договору", agreementNum);
+    data.append("Metadata.Боржник", clientName);
+    data.append("Metadata.ІПН", inn);
+    data.append("Metadata.Проект", projectName);
 
-    let xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
     // xhr.addEventListener("readystatechange", function () {
     //   if (this.readyState === 4)
     //     console.log(this.responseText)
     // });
-    xhr.addEventListener('readystatechange', listener);
+    xhr.addEventListener("readystatechange", listener);
 
     xhr.open(
-      'POST',
-      `https://api.document.online/api/v1/${clientId}/document?source=verdict`
+      "POST",
+      `https://api.document.online/api/v1/${clientId}/document?source=verdict`,
     );
-    xhr.setRequestHeader('Authorization', `Bearer ${token}`);
-    xhr.setRequestHeader('Cache-Control', 'no-cache');
+    xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+    xhr.setRequestHeader("Cache-Control", "no-cache");
     xhr.send(data);
   }
 
   static daysToString(days: number): string {
-    if (days === 0) return '';
+    if (days === 0) return "";
 
     if (days % 10 === 1 && days % 100 !== 11) return `${days} день`;
     else if (

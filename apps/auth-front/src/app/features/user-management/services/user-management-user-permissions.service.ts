@@ -1,18 +1,18 @@
-import { DestroyRef, Injectable, inject } from '@angular/core';
-import { catchError, of } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DestroyRef, Injectable, inject } from "@angular/core";
+import { catchError, of } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import {
   Permission,
   PermissionByRole,
-} from '../../role-management/models/role.model';
-import { UserManagementUserService } from './user-management-user.service';
-import { App } from '../../project-management/models/project.model';
-import { UserManagementHttpService } from './user-management-http.service';
-import { MessageHandlingService } from '@shared/services/message-handling.service';
+} from "../../role-management/models/role.model";
+import { UserManagementUserService } from "./user-management-user.service";
+import { App } from "../../project-management/models/project.model";
+import { UserManagementHttpService } from "./user-management-http.service";
+import { MessageHandlingService } from "@shared/services/message-handling.service";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UserManagementUserPermissionsService {
   private userManagementHttpService = inject(UserManagementHttpService);
@@ -39,12 +39,12 @@ export class UserManagementUserPermissionsService {
         .getUserPermissions(this.userManagementUserService.selectedUser.id)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             return of(null);
-          })
+          }),
         )
-        .subscribe((data) => {
+        .subscribe(data => {
           if (data) {
             this.userPermissions = data.permissions_by_app;
           }
@@ -58,12 +58,12 @@ export class UserManagementUserPermissionsService {
         .getAvailablePermissionsByApp(userId, this.selectedAppForAdd.id)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             return of(null);
-          })
+          }),
         )
-        .subscribe((data) => {
+        .subscribe(data => {
           if (data) {
             this.availablePermissions = data.permissions;
           }
@@ -73,17 +73,17 @@ export class UserManagementUserPermissionsService {
 
   addUserPermission(userId: number) {
     const permissionIds = this.selectedPermissionsForAdd?.map(
-      (permission) => permission.id
+      permission => permission.id,
     );
     if (permissionIds) {
       this.userManagementHttpService
         .addUserPermission(userId, permissionIds)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             return of(null);
-          })
+          }),
         )
         .subscribe(() => {
           this.getUserPermissions();
@@ -96,17 +96,17 @@ export class UserManagementUserPermissionsService {
   }
   deleteUserPermission(userId: number) {
     const permissionIds = this.selectedPermissionsForDelete?.map(
-      (permission) => permission.id
+      permission => permission.id,
     );
     if (permissionIds) {
       this.userManagementHttpService
         .deleteUserPermission(userId, permissionIds)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             return of(null);
-          })
+          }),
         )
         .subscribe(() => {
           this.getUserPermissions();
@@ -119,7 +119,7 @@ export class UserManagementUserPermissionsService {
   }
 
   getPermissionsByApp(app: string) {
-    const appObject = this.userPermissions?.find((item) => item.app === app);
+    const appObject = this.userPermissions?.find(item => item.app === app);
 
     this.actionsByApp = appObject ? appObject.permissions : null;
   }

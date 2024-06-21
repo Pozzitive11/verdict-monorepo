@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { UserManagementPermissionsListComponent } from './user-management-permissions-list.component';
+import { UserManagementPermissionsListComponent } from "./user-management-permissions-list.component";
 
-describe('UserManagementPermissionsListComponent', () => {
+describe("UserManagementPermissionsListComponent", () => {
   let component: UserManagementPermissionsListComponent;
   let fixture: ComponentFixture<UserManagementPermissionsListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserManagementPermissionsListComponent]
-    })
-    .compileComponents();
-    
+      imports: [UserManagementPermissionsListComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(UserManagementPermissionsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

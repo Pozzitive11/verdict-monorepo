@@ -1,13 +1,13 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject } from "@angular/core";
 
-import { App, NewApp, Project, UpdateApp } from '../models/project.model';
-import { Observable } from 'rxjs';
-import { environment } from '@environments/environment';
+import { App, NewApp, Project, UpdateApp } from "../models/project.model";
+import { Observable } from "rxjs";
+import { environment } from "@environments/environment";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ProjectManagementHttpService {
   private http = inject(HttpClient);
@@ -15,11 +15,11 @@ export class ProjectManagementHttpService {
   projectsUrl =
     (environment.BACKEND_URL || window.location.origin) +
     environment.API_BASE_URL +
-    '/structure/project';
+    "/structure/project";
   appUrl =
     (environment.BACKEND_URL || window.location.origin) +
     environment.API_BASE_URL +
-    '/structure/app';
+    "/structure/app";
 
   // PROJECTS
   getProjectsList(): Observable<{ projects: Project[] }> {
@@ -37,7 +37,7 @@ export class ProjectManagementHttpService {
   updateProject(
     projectId: number,
     projectName: string,
-    projectDescription: string
+    projectDescription: string,
   ) {
     return this.http.patch(`${this.projectsUrl}/${projectId}`, {
       Name: projectName,
@@ -47,7 +47,7 @@ export class ProjectManagementHttpService {
   // APPS
   getAppsList(projectId: number): Observable<{ apps: App[] }> {
     return this.http.get<{ apps: App[] }>(
-      `${this.projectsUrl}/${projectId}/apps`
+      `${this.projectsUrl}/${projectId}/apps`,
     );
   }
   createApp(newApp: NewApp) {

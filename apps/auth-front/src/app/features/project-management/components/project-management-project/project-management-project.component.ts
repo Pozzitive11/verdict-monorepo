@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Project } from '@features/project-management/models/project.model';
-import { ProjectManagementAppService } from '@features/project-management/services/project-management-app.service';
-import { ProjectManagementProjectService } from '@features/project-management/services/project-management-project.service';
-import { ModalComponent } from '@shared/components/modal/modal.component';
-import { ProjectManagementAppsListComponent } from '../project-management-apps-list/project-management-apps-list.component';
+import { CommonModule } from "@angular/common";
+import { Component, Input, OnInit, inject } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { Project } from "@features/project-management/models/project.model";
+import { ProjectManagementAppService } from "@features/project-management/services/project-management-app.service";
+import { ProjectManagementProjectService } from "@features/project-management/services/project-management-project.service";
+import { ModalComponent } from "@shared/components/modal/modal.component";
+import { ProjectManagementAppsListComponent } from "../project-management-apps-list/project-management-apps-list.component";
 @Component({
-  selector: 'app-project-management-project',
+  selector: "app-project-management-project",
   standalone: true,
   imports: [
     CommonModule,
@@ -15,21 +15,21 @@ import { ProjectManagementAppsListComponent } from '../project-management-apps-l
     ProjectManagementAppsListComponent,
     ModalComponent,
   ],
-  templateUrl: './project-management-project.component.html',
-  styleUrl: './project-management-project.component.css',
+  templateUrl: "./project-management-project.component.html",
+  styleUrl: "./project-management-project.component.css",
   providers: [ProjectManagementAppService],
 })
 export class ProjectManagementProjectComponent implements OnInit {
   protected projectManagementProjectService = inject(
-    ProjectManagementProjectService
+    ProjectManagementProjectService,
   );
   protected projectManagementAppService = inject(ProjectManagementAppService);
 
   @Input() project: Project;
   showBody = false;
 
-  updateProjectName = '';
-  updateProjectDescription = '';
+  updateProjectName = "";
+  updateProjectDescription = "";
 
   ngOnInit(): void {
     this.setProjectValues();
@@ -54,7 +54,7 @@ export class ProjectManagementProjectComponent implements OnInit {
     this.projectManagementProjectService.updateProject(
       this.project.id,
       this.updateProjectName,
-      this.updateProjectDescription
+      this.updateProjectDescription,
     );
   }
 

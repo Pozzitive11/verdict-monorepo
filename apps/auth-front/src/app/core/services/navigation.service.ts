@@ -1,31 +1,31 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { inject, Injectable, signal } from "@angular/core";
+import { NavigationEnd, Router } from "@angular/router";
 import {
   navLinksDataModel,
   NavLinkInfo,
-} from '@shared/models/nav-links-data.model';
-import { pageNamesModel } from '@shared/models/page-names.model';
-import { filter, map } from 'rxjs';
+} from "@shared/models/nav-links-data.model";
+import { pageNamesModel } from "@shared/models/page-names.model";
+import { filter, map } from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class NavigationService {
-  lastLocation = signal<string>('/');
-  currentLocation = signal<string>('/');
+  lastLocation = signal<string>("/");
+  currentLocation = signal<string>("/");
   currentPage = signal<string>(pageNamesModel.projectManagement);
-  currentReport = signal<string>('');
+  currentReport = signal<string>("");
   private readonly route = inject(Router);
 
   constructor() {
     this.route.events
       .pipe(
         filter(
-          (event): event is NavigationEnd => event instanceof NavigationEnd
+          (event): event is NavigationEnd => event instanceof NavigationEnd,
         ),
-        map((event) => event.urlAfterRedirects)
+        map(event => event.urlAfterRedirects),
       )
-      .subscribe((url) => {
+      .subscribe(url => {
         this.setCurrent(url);
         this.lastLocation.set(this.currentLocation());
         this.currentLocation.set(url);
@@ -33,17 +33,17 @@ export class NavigationService {
   }
 
   navigate(page: string, callback?: () => void) {
-    this.route.navigate(page.split('/')).then(callback);
+    this.route.navigate(page.split("/")).then(callback);
   }
 
   navigateBack(defaultPage?: string) {
     this.route
       .navigate(
-        this.lastLocation() === '/' && defaultPage
-          ? defaultPage.split('/')
-          : this.lastLocation() === '/'
-          ? ['dashboard']
-          : this.lastLocation().split('/')
+        this.lastLocation() === "/" && defaultPage
+          ? defaultPage.split("/")
+          : this.lastLocation() === "/"
+            ? ["dashboard"]
+            : this.lastLocation().split("/"),
       )
       .then();
   }
@@ -71,7 +71,7 @@ export class NavigationService {
     };
 
     this.currentReport.set(
-      checkChildren(navLinksDataModel[this.currentPage()])?.name || ''
+      checkChildren(navLinksDataModel[this.currentPage()])?.name || "",
     );
   }
 }

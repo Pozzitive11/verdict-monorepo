@@ -1,19 +1,19 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject, tap } from 'rxjs';
-import { jwtDecode } from 'jwt-decode';
-import { User, UserToken } from '@core/models/user.model';
-import { environment } from '@environments/environment';
-import { AuthResponseData } from '@shared/models/server-data.model';
+import { HttpClient } from "@angular/common/http";
+import { inject, Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { BehaviorSubject, tap } from "rxjs";
+import { jwtDecode } from "jwt-decode";
+import { User, UserToken } from "@core/models/user.model";
+import { environment } from "@environments/environment";
+import { AuthResponseData } from "@shared/models/server-data.model";
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly route = inject(Router);
 
-  isAuthorized: boolean = false;
+  isAuthorized = false;
   user = new BehaviorSubject<User | null>(null);
   loadedUser: User | null = null;
   private readonly url: string =
@@ -22,7 +22,7 @@ export class AuthService {
     environment.auth_api_url;
 
   serverLogIn(form: { login: string; password: string }) {
-    return this.http.post<AuthResponseData>(this.url + '/login', form);
+    return this.http.post<AuthResponseData>(this.url + "/login", form);
   }
 
   checkAccess(pageInfo: { page: string; token: string }) {
@@ -31,37 +31,37 @@ export class AuthService {
       pageToNavigate?: string;
     }
 
-    return this.http.post<any>(this.url + '/verify_code', pageInfo);
+    return this.http.post<any>(this.url + "/verify_code", pageInfo);
   }
 
   logIn(form: { login: string; password: string }) {
     return this.serverLogIn(form).pipe(
-      tap((resData) => {
+      tap(resData => {
         const decoded = jwtDecode<UserToken>(resData.access_token);
 
         this.loadedUser = new User(
           decoded.Login,
           resData.access_token,
-          ['/*'],
-          new Date(decoded.expire_at)
+          ["/*"],
+          new Date(decoded.expire_at),
         );
-        localStorage.setItem('user', JSON.stringify(this.loadedUser));
+        localStorage.setItem("user", JSON.stringify(this.loadedUser));
         this.isAuthorized = true;
         this.user.next(this.loadedUser);
-      })
+      }),
     );
   }
 
   logOut() {
     this.isAuthorized = false;
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     this.loadedUser = null;
     this.user.next(this.loadedUser);
-    this.route.navigate(['/']);
+    this.route.navigate(["/"]);
   }
 
-  autoLogIn(mainPage: string = '') {
-    const user_data = localStorage.getItem('user');
+  autoLogIn(mainPage = "") {
+    const user_data = localStorage.getItem("user");
     if (!user_data) {
       this.isAuthorized = false;
       return;
@@ -76,7 +76,7 @@ export class AuthService {
       user.username,
       user._token,
       user._pages,
-      new Date(user._tokenExpirationDate)
+      new Date(user._tokenExpirationDate),
     );
     if (this.loadedUser.token) {
       if (this.loadedUser.expireAt && this.loadedUser.expireAt > new Date()) {

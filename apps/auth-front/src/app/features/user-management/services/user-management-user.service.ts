@@ -1,12 +1,12 @@
-import { DestroyRef, Injectable, inject } from '@angular/core';
-import { BehaviorSubject, catchError, from, of, tap } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MessageHandlingService } from '@shared/services/message-handling.service';
-import { User } from '../models/user.model';
-import { UserManagementHttpService } from './user-management-http.service';
+import { DestroyRef, Injectable, inject } from "@angular/core";
+import { BehaviorSubject, catchError, from, of } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { MessageHandlingService } from "@shared/services/message-handling.service";
+import { User } from "../models/user.model";
+import { UserManagementHttpService } from "./user-management-http.service";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UserManagementUserService {
   private userManagementHttpService = inject(UserManagementHttpService);
@@ -30,13 +30,13 @@ export class UserManagementUserService {
       .getUsersList()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        catchError((error) => {
+        catchError(error => {
           this.messageService.alertError(error);
           this.userListLoader = false;
           return of(null);
-        })
+        }),
       )
-      .subscribe((data) => {
+      .subscribe(data => {
         if (data) {
           this.userListLoader = false;
           this._users$.next(data.users);
@@ -51,13 +51,13 @@ export class UserManagementUserService {
         .getUserInfo(this.selectedUser.id)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             this.userLoader = false;
             return of(null);
-          })
+          }),
         )
-        .subscribe((data) => {
+        .subscribe(data => {
           this._user$.next(data);
           this.userLoader = false;
         });

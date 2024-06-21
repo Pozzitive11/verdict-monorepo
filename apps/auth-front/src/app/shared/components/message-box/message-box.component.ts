@@ -1,12 +1,12 @@
-import { Component, computed, inject } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
-import { NgbToast } from '@ng-bootstrap/ng-bootstrap';
-import { MessageHandlingService } from '@shared/services/message-handling.service';
+import { Component, computed, inject } from "@angular/core";
+import { NgFor, NgIf } from "@angular/common";
+import { NgbToast } from "@ng-bootstrap/ng-bootstrap";
+import { MessageHandlingService } from "@shared/services/message-handling.service";
 
 @Component({
-  selector: 'app-message-box',
-  templateUrl: './message-box.component.html',
-  styleUrls: ['./message-box.component.css'],
+  selector: "app-message-box",
+  templateUrl: "./message-box.component.html",
+  styleUrls: ["./message-box.component.css"],
   standalone: true,
   imports: [NgIf, NgFor, NgbToast],
 })
@@ -17,7 +17,7 @@ export class MessageBoxComponent {
     () =>
       this.messageService.dataInfos().length +
         this.messageService.dataErrors().length >
-      0
+      0,
   );
   errors = computed(() => this.messageService.dataErrors());
   infos = computed(() => this.messageService.dataInfos());

@@ -5,21 +5,21 @@ export class User {
     // private _role: string,
     private _token: string,
     private _pages: string[],
-    private _tokenExpirationDate: Date
+    private _tokenExpirationDate: Date,
   ) {}
 
   get token(): string {
     if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
-      return ''
+      return "";
     }
-    return this._token
+    return this._token;
   }
 
   get expireAt(): Date | null {
     if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
-      return null
+      return null;
     }
-    return this._tokenExpirationDate
+    return this._tokenExpirationDate;
   }
 
   // get role(): string | null {
@@ -31,15 +31,15 @@ export class User {
 
   get pages(): string[] {
     if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
-      return []
+      return [];
     }
-    return this._pages
+    return this._pages;
   }
 }
 
 export interface UserToken {
-  Login: string
-  expire_at: string
-  id: number
-  IsActive: string
+  Login: string;
+  expire_at: string;
+  id: number;
+  IsActive: string;
 }

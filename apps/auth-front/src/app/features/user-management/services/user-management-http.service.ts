@@ -1,13 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject } from "@angular/core";
 
-import { User, UserPermissionByApp, UserRole } from '../models/user.model';
-import { environment } from '@environments/environment';
-import { PermissionByRole } from '@features/role-management/models/role.model';
+import { User, UserPermissionByApp, UserRole } from "../models/user.model";
+import { environment } from "@environments/environment";
+import { PermissionByRole } from "@features/role-management/models/role.model";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UserManagementHttpService {
   private http = inject(HttpClient);
@@ -15,11 +15,11 @@ export class UserManagementHttpService {
   userUrl =
     (environment.BACKEND_URL || window.location.origin) +
     environment.API_BASE_URL +
-    '/user';
+    "/user";
   permissionUrl =
     (environment.BACKEND_URL || window.location.origin) +
     environment.API_BASE_URL +
-    '/structure/permission';
+    "/structure/permission";
 
   // USER
   getUsersList() {
@@ -32,23 +32,23 @@ export class UserManagementHttpService {
 
   getUserRoles(userId: number) {
     return this.http.get<{ roles: UserRole[] }>(
-      `${this.userUrl}/${userId}/roles`
+      `${this.userUrl}/${userId}/roles`,
     );
   }
   getUserPermissions(userId: number) {
     return this.http.get<{ permissions_by_app: PermissionByRole[] }>(
-      `${this.userUrl}/${userId}/permissions`
+      `${this.userUrl}/${userId}/permissions`,
     );
   }
 
   getAvailableRoles(userId: number) {
     return this.http.get<{ roles: UserRole[] }>(
-      `${this.userUrl}/${userId}/roles/available`
+      `${this.userUrl}/${userId}/roles/available`,
     );
   }
   getAvailablePermissionsByApp(userId: number, appId: number) {
     return this.http.get<{ permissions: UserPermissionByApp[] }>(
-      `${this.userUrl}/${userId}/permissions/${appId}`
+      `${this.userUrl}/${userId}/permissions/${appId}`,
     );
   }
 

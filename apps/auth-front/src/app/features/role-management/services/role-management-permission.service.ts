@@ -1,15 +1,15 @@
-import { DestroyRef, Injectable, inject } from '@angular/core';
-import { BehaviorSubject, catchError, from, of, tap } from 'rxjs';
-import { Permission, PermissionByRole, Role } from '../models/role.model';
-import { RoleManagementHttpService } from './role-management-http.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { App } from '../../project-management/models/project.model';
-import { RoleManagementRoleService } from './role-management-role.service';
-import { MessageHandlingService } from '../../../shared/services/message-handling.service';
+import { DestroyRef, Injectable, inject } from "@angular/core";
+import { BehaviorSubject, catchError, from, of } from "rxjs";
+import { Permission, PermissionByRole } from "../models/role.model";
+import { RoleManagementHttpService } from "./role-management-http.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { App } from "../../project-management/models/project.model";
+import { RoleManagementRoleService } from "./role-management-role.service";
+import { MessageHandlingService } from "../../../shared/services/message-handling.service";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class RoleManagementPermissionService {
   private roleManagementHttpService = inject(RoleManagementHttpService);
@@ -35,12 +35,12 @@ export class RoleManagementPermissionService {
         .getPermissionByApp(roleId, this.selectedAppForUpdate.id)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             return of(null);
-          })
+          }),
         )
-        .subscribe((data) => {
+        .subscribe(data => {
           if (data) {
             this._permission$.next(data.permissions);
           }
@@ -53,12 +53,12 @@ export class RoleManagementPermissionService {
       .getAppsList()
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        catchError((error) => {
+        catchError(error => {
           this.messageService.alertError(error);
           return of(null);
-        })
+        }),
       )
-      .subscribe((data) => {
+      .subscribe(data => {
         if (data) {
           this.apps = data.apps;
         }
@@ -67,23 +67,23 @@ export class RoleManagementPermissionService {
 
   addRolePermissions(roleId: number) {
     const selectedPermissionIds = this.selectedPermission?.map(
-      (permission) => permission.id
+      permission => permission.id,
     );
     if (selectedPermissionIds) {
       this.roleManagementHttpService
         .addRolePermissions(roleId, selectedPermissionIds)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             return of(null);
-          })
+          }),
         )
         .subscribe(() => {
           this.roleManagementRoleService.getRole();
           selectedPermissionIds.length > 1
-            ? this.messageService.sendInfo('Дозволи додано')
-            : this.messageService.sendInfo('Дозвіл додано');
+            ? this.messageService.sendInfo("Дозволи додано")
+            : this.messageService.sendInfo("Дозвіл додано");
         });
       this.clearAddPermissionUpdateModalValues();
       this.modalService.dismissAll();
@@ -91,7 +91,7 @@ export class RoleManagementPermissionService {
   }
   deletePermission(roleId: number) {
     const selectedPermissionIds = this.selectedAppActionForDelete?.map(
-      (permission) => permission.id
+      permission => permission.id,
     );
 
     if (selectedPermissionIds) {
@@ -99,17 +99,17 @@ export class RoleManagementPermissionService {
         .deleteRolePermissions(roleId, selectedPermissionIds)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             return of(null);
-          })
+          }),
         )
         .subscribe(() => {
           this.roleManagementRoleService.getRole();
           if (selectedPermissionIds.length > 1) {
-            this.messageService.sendInfo('Дозволи видалено');
+            this.messageService.sendInfo("Дозволи видалено");
           } else {
-            this.messageService.sendInfo('Дозвіл видалено');
+            this.messageService.sendInfo("Дозвіл видалено");
           }
         });
     }
@@ -120,20 +120,20 @@ export class RoleManagementPermissionService {
       .getPermissionByRole(roleId)
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        catchError((error) => {
+        catchError(error => {
           this.messageService.alertError(error);
           return of(null);
-        })
+        }),
       )
-      .subscribe((data) => {
+      .subscribe(data => {
         if (data) {
           this.permissionsByRole = data.permissions_by_app;
-          this.permissionApps = this.permissionsByRole.map((perm) => perm.app);
+          this.permissionApps = this.permissionsByRole.map(perm => perm.app);
         }
       });
   }
   getPermissionsByApp(app: string) {
-    const appObject = this.permissionsByRole?.find((item) => item.app === app);
+    const appObject = this.permissionsByRole?.find(item => item.app === app);
 
     this.actionsByRoleApp = appObject ? appObject.permissions : null;
   }

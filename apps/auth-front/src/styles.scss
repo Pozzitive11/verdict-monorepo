@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 
-@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import "bootstrap-icons/font/bootstrap-icons.css";
 .body-width {
   width: calc(100% - 7rem);
   margin-left: 7rem;
@@ -483,7 +483,7 @@ th {
 }
 
 .output-range::before {
-  content: '';
+  content: "";
   background: #0f1c51;
 }
 

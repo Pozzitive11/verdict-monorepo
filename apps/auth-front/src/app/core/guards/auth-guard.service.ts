@@ -1,18 +1,16 @@
-import { inject } from '@angular/core';
+import { inject } from "@angular/core";
 import {
   ActivatedRouteSnapshot,
   CanActivateFn,
-  Router,
   RouterStateSnapshot,
-} from '@angular/router';
-import { AuthService } from '@core/services/auth.service';
+} from "@angular/router";
+import { AuthService } from "@core/services/auth.service";
 
 export const AuthGuard: CanActivateFn = async (
   _route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
+  state: RouterStateSnapshot,
 ) => {
   const auth = inject(AuthService);
-  const router = inject(Router);
 
   if (!auth.isAuthorized) auth.autoLogIn(state.url);
   if (!auth.isAuthorized) return true;
@@ -24,7 +22,7 @@ export const AuthGuard: CanActivateFn = async (
 
   for (const page of auth.loadedUser.pages) {
     if (page === state.url) return true;
-    if (page.endsWith('*') && state.url.startsWith(page.slice(0, -1)))
+    if (page.endsWith("*") && state.url.startsWith(page.slice(0, -1)))
       return true;
   }
 

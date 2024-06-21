@@ -1,14 +1,14 @@
-import { Component, inject, TemplateRef } from '@angular/core';
-import { NgbOffcanvas, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
-import { NgFor, NgIf } from '@angular/common';
-import { UtilFunctions } from '@shared/utils/util.functions';
-import { AuthService } from '@core/services/auth.service';
-import { MessageHandlingService } from '@shared/services/message-handling.service';
-import { PpHttpClientService } from '@shared/services/pp-http-client.service';
+import { Component, inject, TemplateRef } from "@angular/core";
+import { NgbOffcanvas, NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
+import { NgFor, NgIf } from "@angular/common";
+import { UtilFunctions } from "@shared/utils/util.functions";
+import { AuthService } from "@core/services/auth.service";
+import { MessageHandlingService } from "@shared/services/message-handling.service";
+import { PpHttpClientService } from "@shared/services/pp-http-client.service";
 
 @Component({
-  selector: 'app-account-info',
-  templateUrl: './account-info.component.html',
+  selector: "app-account-info",
+  templateUrl: "./account-info.component.html",
   standalone: true,
   imports: [NgIf, NgFor, NgbTooltip],
 })
@@ -25,26 +25,26 @@ export class AccountInfoComponent {
 
   open(content: TemplateRef<any>) {
     this.offcanvasService.open(content, {
-      ariaLabelledBy: 'offcanvas-basic-title',
+      ariaLabelledBy: "offcanvas-basic-title",
       scroll: true,
-      position: 'end',
+      position: "end",
     });
   }
 
   downloadFile(filename: string) {
     this.http.requestFile(filename).subscribe({
-      next: (fileBinary) =>
+      next: fileBinary =>
         UtilFunctions.downloadXlsx(fileBinary, filename, null),
-      error: (err) => this.messageService.sendError(err.error.detail),
+      error: err => this.messageService.sendError(err.error.detail),
     });
   }
 
   removeFile(filename: string) {
     this.http.deleteFile(filename).subscribe({
-      next: (value) => this.messageService.sendInfo(value.description),
-      error: (err) => this.messageService.sendError(err.error.detail),
+      next: value => this.messageService.sendInfo(value.description),
+      error: err => this.messageService.sendError(err.error.detail),
       complete: () =>
-        (this.userFiles = this.userFiles.filter((file) => file !== filename)),
+        (this.userFiles = this.userFiles.filter(file => file !== filename)),
     });
   }
 }

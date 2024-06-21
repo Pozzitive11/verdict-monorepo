@@ -1,26 +1,26 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { App } from '@features/project-management/models/project.model';
-import { ProjectManagementAppService } from '@features/project-management/services/project-management-app.service';
-import { ModalComponent } from '@shared/components/modal/modal.component';
+import { Component, Input, OnInit, inject } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { App } from "@features/project-management/models/project.model";
+import { ProjectManagementAppService } from "@features/project-management/services/project-management-app.service";
+import { ModalComponent } from "@shared/components/modal/modal.component";
 
 @Component({
-  selector: 'app-project-management-app',
+  selector: "app-project-management-app",
   standalone: true,
   imports: [CommonModule, FormsModule, ModalComponent],
-  templateUrl: './project-management-app.component.html',
-  styleUrl: './project-management-app.component.css',
+  templateUrl: "./project-management-app.component.html",
+  styleUrl: "./project-management-app.component.css",
 })
 export class ProjectManagementAppComponent implements OnInit {
   protected projectManagementAppService = inject(ProjectManagementAppService);
 
   @Input() app: App;
   showBody = false;
-  updateAppName = '';
-  updateAppShortDescription = '';
-  updateAppRoute = '';
-  updateAppDescription = '';
+  updateAppName = "";
+  updateAppShortDescription = "";
+  updateAppRoute = "";
+  updateAppDescription = "";
   ngOnInit(): void {
     this.setAppValues();
   }
@@ -45,7 +45,7 @@ export class ProjectManagementAppComponent implements OnInit {
       this.updateAppName,
       this.updateAppDescription,
       this.updateAppShortDescription,
-      this.updateAppRoute
+      this.updateAppRoute,
     );
   }
 }

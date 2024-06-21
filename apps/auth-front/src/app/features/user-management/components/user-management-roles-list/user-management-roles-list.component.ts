@@ -1,14 +1,14 @@
-import { Component, Input, OnChanges, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
-import { UserManagementUserRolesService } from '@features/user-management/services/user-management-user-roles.service';
-import { ModalComponent } from '@shared/components/modal/modal.component';
-import { UserManagementRoleComponent } from '../user-management-role/user-management-role.component';
+import { Component, OnChanges, OnInit, inject } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { NgSelectModule } from "@ng-select/ng-select";
+import { FormsModule } from "@angular/forms";
+import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
+import { UserManagementUserRolesService } from "@features/user-management/services/user-management-user-roles.service";
+import { ModalComponent } from "@shared/components/modal/modal.component";
+import { UserManagementRoleComponent } from "../user-management-role/user-management-role.component";
 
 @Component({
-  selector: 'app-user-management-roles-list',
+  selector: "app-user-management-roles-list",
   standalone: true,
   imports: [
     CommonModule,
@@ -18,12 +18,12 @@ import { UserManagementRoleComponent } from '../user-management-role/user-manage
     NgbAccordionModule,
     UserManagementRoleComponent,
   ],
-  templateUrl: './user-management-roles-list.component.html',
-  styleUrl: './user-management-roles-list.component.css',
+  templateUrl: "./user-management-roles-list.component.html",
+  styleUrl: "./user-management-roles-list.component.css",
 })
 export class UserManagementRolesListComponent implements OnInit, OnChanges {
   protected userManagementUserRolesService = inject(
-    UserManagementUserRolesService
+    UserManagementUserRolesService,
   );
   ngOnInit(): void {
     this.userManagementUserRolesService.getAvailableRoles();

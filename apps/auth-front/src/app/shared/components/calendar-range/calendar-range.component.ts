@@ -1,19 +1,19 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { CommonModule, JsonPipe } from '@angular/common';
+import { Component, EventEmitter, Output } from "@angular/core";
+import { CommonModule, JsonPipe } from "@angular/common";
 import {
   NgbDate,
   NgbCalendar,
   NgbDateParserFormatter,
   NgbDatepickerModule,
-} from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+} from "@ng-bootstrap/ng-bootstrap";
+import { FormsModule } from "@angular/forms";
 
 @Component({
-  selector: 'app-calendar-range',
+  selector: "app-calendar-range",
   standalone: true,
   imports: [CommonModule, NgbDatepickerModule, FormsModule, JsonPipe],
-  templateUrl: './calendar-range.component.html',
-  styleUrls: ['./calendar-range.component.css'],
+  templateUrl: "./calendar-range.component.html",
+  styleUrls: ["./calendar-range.component.css"],
 })
 export class CalendarRangeComponent {
   hoveredDate: NgbDate | null = null;
@@ -28,7 +28,7 @@ export class CalendarRangeComponent {
 
   constructor(
     private calendar: NgbCalendar,
-    public formatter: NgbDateParserFormatter
+    public formatter: NgbDateParserFormatter,
   ) {
     // this.fromDate = calendar.getToday()
     // this.toDate = calendar.getNext(calendar.getToday(), 'd', 10)

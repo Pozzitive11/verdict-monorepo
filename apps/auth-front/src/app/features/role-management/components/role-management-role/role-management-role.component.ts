@@ -5,30 +5,30 @@ import {
   OnInit,
   SimpleChanges,
   inject,
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { Role } from '@features/role-management/models/role.model';
-import { RoleManagementPermissionService } from '@features/role-management/services/role-management-permission.service';
-import { RoleManagementRoleService } from '@features/role-management/services/role-management-role.service';
-import { ModalComponent } from '@shared/components/modal/modal.component';
-import { UtilFunctions } from '@shared/utils/util.functions';
+} from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { NgSelectModule } from "@ng-select/ng-select";
+import { Role } from "@features/role-management/models/role.model";
+import { RoleManagementPermissionService } from "@features/role-management/services/role-management-permission.service";
+import { RoleManagementRoleService } from "@features/role-management/services/role-management-role.service";
+import { ModalComponent } from "@shared/components/modal/modal.component";
+import { UtilFunctions } from "@shared/utils/util.functions";
 
 @Component({
-  selector: 'app-role-management-role',
+  selector: "app-role-management-role",
   standalone: true,
   imports: [CommonModule, ModalComponent, FormsModule, NgSelectModule],
-  templateUrl: './role-management-role.component.html',
-  styleUrl: './role-management-role.component.css',
+  templateUrl: "./role-management-role.component.html",
+  styleUrl: "./role-management-role.component.css",
 })
 export class RoleManagementRoleComponent implements OnInit, OnChanges {
   protected roleManagementRoleService = inject(RoleManagementRoleService);
   protected roleManagementPermissionService = inject(
-    RoleManagementPermissionService
+    RoleManagementPermissionService,
   );
   @Input() role: Role | null;
-  updateRoleName = '';
+  updateRoleName = "";
   isAppSelected = false;
   isRolePermissionGroupsEmpty = true;
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class RoleManagementRoleComponent implements OnInit, OnChanges {
     }
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if ('role' in changes) {
+    if ("role" in changes) {
       this.updateRoleNameFromRole();
       if (this.role) {
         this.roleManagementPermissionService.setPermissionsByRole(this.role.id);
@@ -79,7 +79,7 @@ export class RoleManagementRoleComponent implements OnInit, OnChanges {
   getSelectedAppForDelete() {
     if (this.roleManagementPermissionService.selectedAppForDelete) {
       this.roleManagementPermissionService.getPermissionsByApp(
-        this.roleManagementPermissionService.selectedAppForDelete
+        this.roleManagementPermissionService.selectedAppForDelete,
       );
     }
   }

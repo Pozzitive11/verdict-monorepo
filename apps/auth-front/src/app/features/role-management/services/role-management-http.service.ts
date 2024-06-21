@@ -1,13 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject } from "@angular/core";
 
-import { Permission, PermissionByRole, Role } from '../models/role.model';
-import { App } from '../../project-management/models/project.model';
-import { environment } from 'src/environments/environment';
+import { Permission, PermissionByRole, Role } from "../models/role.model";
+import { App } from "../../project-management/models/project.model";
+import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class RoleManagementHttpService {
   private http = inject(HttpClient);
@@ -15,15 +15,15 @@ export class RoleManagementHttpService {
   roleUrl =
     (environment.BACKEND_URL || window.location.origin) +
     environment.API_BASE_URL +
-    '/structure/role';
+    "/structure/role";
   appUrl =
     (environment.BACKEND_URL || window.location.origin) +
     environment.API_BASE_URL +
-    '/structure/app';
+    "/structure/app";
   permissionUrl =
     (environment.BACKEND_URL || window.location.origin) +
     environment.API_BASE_URL +
-    '/structure/permission/perm_role';
+    "/structure/permission/perm_role";
 
   // APP
   getAppsList() {
@@ -50,12 +50,12 @@ export class RoleManagementHttpService {
   // PERMISSION
   getPermissionByApp(roleId: number, appId: number) {
     return this.http.get<{ permissions: Permission[] }>(
-      `${this.roleUrl}/${roleId}/permissions/${appId}`
+      `${this.roleUrl}/${roleId}/permissions/${appId}`,
     );
   }
   getPermissionByRole(roleId: number) {
     return this.http.get<{ permissions_by_app: PermissionByRole[] }>(
-      `${this.roleUrl}/${roleId}/permissions`
+      `${this.roleUrl}/${roleId}/permissions`,
     );
   }
   addRolePermissions(roleId: number, permissionIds: number[]) {

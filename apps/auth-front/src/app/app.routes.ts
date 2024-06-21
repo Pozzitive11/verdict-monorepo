@@ -1,51 +1,51 @@
-import { Routes } from '@angular/router';
+import { Routes } from "@angular/router";
 
 export const appRoutes: Routes = [
   {
-    path: '',
-    redirectTo: 'auth/login',
-    pathMatch: 'full',
+    path: "",
+    redirectTo: "auth/login",
+    pathMatch: "full",
   },
   {
-    path: 'auth',
+    path: "auth",
     children: [
       {
-        path: 'login',
+        path: "login",
         loadChildren: () =>
-          import('./shared/components/auth/auth.component').then(
-            (m) => m.AuthComponent
+          import("./shared/components/auth/auth.component").then(
+            m => m.AuthComponent,
           ),
-        title: 'Вхід',
+        title: "Вхід",
       },
       {
-        path: 'project-management',
+        path: "project-management",
         loadChildren: () =>
           import(
-            './features/project-management/project-management.routes'
-          ).then((m) => m.projectManagementRoutes),
+            "./features/project-management/project-management.routes"
+          ).then(m => m.projectManagementRoutes),
       },
       {
-        path: 'user-management',
+        path: "user-management",
         loadChildren: () =>
-          import('./features/user-management/user-management.routes').then(
-            (m) => m.userManagementRoutes
+          import("./features/user-management/user-management.routes").then(
+            m => m.userManagementRoutes,
           ),
       },
       {
-        path: 'role-management',
+        path: "role-management",
         loadChildren: () =>
-          import('./features/role-management/role-management.routes').then(
-            (m) => m.roleManagementRoutes
+          import("./features/role-management/role-management.routes").then(
+            m => m.roleManagementRoutes,
           ),
       },
     ],
   },
   {
-    path: '**',
+    path: "**",
     loadChildren: () =>
-      import('./shared/components/page-404/page404.component').then(
-        (m) => m.Page404Component
+      import("./shared/components/page-404/page404.component").then(
+        m => m.Page404Component,
       ),
-    title: 'Сторінка не знайдена',
+    title: "Сторінка не знайдена",
   },
 ];

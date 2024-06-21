@@ -1,10 +1,10 @@
-import { DestroyRef, inject } from '@angular/core';
-import { BehaviorSubject, catchError, from, of, tap } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MessageHandlingService } from '@shared/services/message-handling.service';
-import { App, NewApp, UpdateApp } from '../models/project.model';
-import { ProjectManagementHttpService } from './project-management-http.service';
+import { DestroyRef, inject } from "@angular/core";
+import { BehaviorSubject, catchError, from, of, tap } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { MessageHandlingService } from "@shared/services/message-handling.service";
+import { App, NewApp, UpdateApp } from "../models/project.model";
+import { ProjectManagementHttpService } from "./project-management-http.service";
 
 // @Injectable({
 //   providedIn: 'root'
@@ -18,10 +18,10 @@ export class ProjectManagementAppService {
   apps$ = from(this._apps$);
 
   projectId: number;
-  createAppName = '';
-  createAppShortDescription = '';
-  createAppRoute = '';
-  createAppDescription = '';
+  createAppName = "";
+  createAppShortDescription = "";
+  createAppRoute = "";
+  createAppDescription = "";
   loader = false;
   isDataLoaded = false;
 
@@ -32,12 +32,12 @@ export class ProjectManagementAppService {
       .getAppsList(projectId)
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        catchError((error) => {
+        catchError(error => {
           this.messageService.alertError(error);
           return of(null);
-        })
+        }),
       )
-      .subscribe((data) => {
+      .subscribe(data => {
         if (data) {
           this._apps$.next(data.apps);
           this.loader = false;
@@ -57,22 +57,22 @@ export class ProjectManagementAppService {
       .createApp(app)
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        catchError((error) => {
+        catchError(error => {
           this.messageService.alertError(error);
           return of(null);
         }),
-        tap((data) => {
+        tap(data => {
           if (data) {
             const currentProjects = this._apps$.getValue();
             const updatedProjects = [...currentProjects, data];
             this._apps$.next(updatedProjects);
-            this.createAppName = '';
-            this.createAppShortDescription = '';
-            this.createAppRoute = '';
-            this.createAppDescription = '';
-            this.messageService.sendInfo('Додаток створено');
+            this.createAppName = "";
+            this.createAppShortDescription = "";
+            this.createAppRoute = "";
+            this.createAppDescription = "";
+            this.messageService.sendInfo("Додаток створено");
           }
-        })
+        }),
       )
       .subscribe();
     this.modalService.dismissAll();
@@ -82,14 +82,14 @@ export class ProjectManagementAppService {
       .deleteApp(appId)
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        catchError((error) => {
+        catchError(error => {
           this.messageService.alertError(error);
           return of(null);
-        })
+        }),
       )
       .subscribe(() => {
         this.filterApps(appId);
-        this.messageService.sendInfo('Додаток видалено');
+        this.messageService.sendInfo("Додаток видалено");
       });
   }
   updateApp(
@@ -97,7 +97,7 @@ export class ProjectManagementAppService {
     appName: string,
     appDescription: string,
     appShortDescription: string,
-    appRoute: string
+    appRoute: string,
   ) {
     const app: UpdateApp = {
       Name: appName,
@@ -109,20 +109,20 @@ export class ProjectManagementAppService {
       .updateApp(appId, app)
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        catchError((error) => {
+        catchError(error => {
           this.messageService.alertError(error);
           return of(null);
-        })
+        }),
       )
       .subscribe(() => {
         this.updateAppValues(appId, app);
-        this.messageService.sendInfo('Додаток оновлено');
+        this.messageService.sendInfo("Додаток оновлено");
       });
     this.modalService.dismissAll();
   }
   private updateAppValues(appId: number, updatedApp: UpdateApp) {
     const currentApps = this._apps$.getValue();
-    const appIndex = currentApps.findIndex((app) => app.id === appId);
+    const appIndex = currentApps.findIndex(app => app.id === appId);
 
     if (appIndex !== -1) {
       const updatedApps = [...currentApps];
@@ -133,7 +133,7 @@ export class ProjectManagementAppService {
 
   private filterApps(appId: number) {
     const currentApps = this._apps$.getValue();
-    const updatedApps = currentApps.filter((app) => app.id !== appId);
+    const updatedApps = currentApps.filter(app => app.id !== appId);
     this._apps$.next(updatedApps);
   }
 }

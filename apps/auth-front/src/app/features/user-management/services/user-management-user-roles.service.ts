@@ -1,21 +1,21 @@
-import { DestroyRef, Injectable, inject } from '@angular/core';
-import { BehaviorSubject, catchError, from, of, tap } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MessageHandlingService } from '@shared/services/message-handling.service';
-import { UserRole } from '../models/user.model';
-import { UserManagementHttpService } from './user-management-http.service';
-import { UserManagementUserPermissionsService } from './user-management-user-permissions.service';
-import { UserManagementUserService } from './user-management-user.service';
+import { DestroyRef, Injectable, inject } from "@angular/core";
+import { BehaviorSubject, catchError, from, of, tap } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { MessageHandlingService } from "@shared/services/message-handling.service";
+import { UserRole } from "../models/user.model";
+import { UserManagementHttpService } from "./user-management-http.service";
+import { UserManagementUserPermissionsService } from "./user-management-user-permissions.service";
+import { UserManagementUserService } from "./user-management-user.service";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class UserManagementUserRolesService {
   private userManagementHttpService = inject(UserManagementHttpService);
   protected userManagementUserService = inject(UserManagementUserService);
   protected userManagementUserPermissionsService = inject(
-    UserManagementUserPermissionsService
+    UserManagementUserPermissionsService,
   );
   private destroyRef = inject(DestroyRef);
   private modalService = inject(NgbModal);
@@ -36,12 +36,12 @@ export class UserManagementUserRolesService {
         .getUserRoles(this.userManagementUserService.selectedUser.id)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             return of(null);
-          })
+          }),
         )
-        .subscribe((data) => {
+        .subscribe(data => {
           if (data) {
             this._userRoles$.next(data.roles);
           }
@@ -55,12 +55,12 @@ export class UserManagementUserRolesService {
         .getAvailableRoles(this.userManagementUserService.selectedUser.id)
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             return of(null);
-          })
+          }),
         )
-        .subscribe((data) => {
+        .subscribe(data => {
           if (data) {
             this._availableRoles$.next(data.roles);
           }
@@ -70,17 +70,17 @@ export class UserManagementUserRolesService {
 
   addUserRole() {
     const selectedRolesIds = this.selectedRoleForAdd?.map(
-      (permission) => permission.id
+      permission => permission.id,
     );
     if (this.userManagementUserService.selectedUser && selectedRolesIds) {
       this.userManagementHttpService
         .addRoleToUSer(
           this.userManagementUserService.selectedUser.id,
-          selectedRolesIds
+          selectedRolesIds,
         )
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             return of(null);
           }),
@@ -89,27 +89,27 @@ export class UserManagementUserRolesService {
             this.getAvailableRoles();
             this.userManagementUserPermissionsService.getUserPermissions();
             selectedRolesIds.length === 1
-              ? this.messageService.sendInfo('Роль додано')
-              : this.messageService.sendInfo('Ролі додано');
-          })
+              ? this.messageService.sendInfo("Роль додано")
+              : this.messageService.sendInfo("Ролі додано");
+          }),
         )
-        .subscribe(() => {});
+        .subscribe();
     }
     this.modalService.dismissAll();
   }
   deleteUserRole() {
     const selectedRolesIds = this.selectedRoleForDelete?.map(
-      (permission) => permission.id
+      permission => permission.id,
     );
     if (this.userManagementUserService.selectedUser && selectedRolesIds) {
       this.userManagementHttpService
         .deleteUserRole(
           this.userManagementUserService.selectedUser.id,
-          selectedRolesIds
+          selectedRolesIds,
         )
         .pipe(
           takeUntilDestroyed(this.destroyRef),
-          catchError((error) => {
+          catchError(error => {
             this.messageService.alertError(error);
             return of(null);
           }),
@@ -117,7 +117,7 @@ export class UserManagementUserRolesService {
             this.filterUserRoles(selectedRolesIds);
             this.userManagementUserPermissionsService.getUserPermissions();
             this.getAvailableRoles();
-          })
+          }),
         )
         .subscribe(() => {
           selectedRolesIds.length === 1
@@ -132,7 +132,7 @@ export class UserManagementUserRolesService {
     const currentUserRoles = this._userRoles$.getValue();
     if (!currentUserRoles) return;
     const updatedUserRoles = currentUserRoles.filter(
-      (userRole) => !roleIds.includes(userRole.id)
+      userRole => !roleIds.includes(userRole.id),
     );
     this._userRoles$.next(updatedUserRoles);
   }

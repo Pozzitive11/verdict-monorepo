@@ -5,6 +5,11 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "extends": [
+        "plugin:@nx/typescript",
+        "plugin:@nx/javascript",
+        "plugin:prettier/recommended"
+      ],
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -16,13 +21,44 @@
                 "sourceTag": "*",
                 "onlyDependOnLibsWithTags": ["*"]
               }
-              // {
-              //   "sourceTag": "scope:shared",
-              //   "onlyDependOnLibsWithTags": ["scope:shared"]
-              // }
             ]
           }
-        ]
+        ],
+        "prettier/prettier": [
+          "error",
+          {
+            "endOfLine": "auto"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@typescript-eslint/lines-between-class-members": "off",
+        "@typescript-eslint/no-shadow": "off",
+        "@typescript-eslint/quotes": [
+          1,
+          "double",
+          { "avoidEscape": true, "allowTemplateLiterals": true }
+        ],
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "no-duplicate-imports": "error",
+        "prefer-const": "error"
       }
     },
     {
@@ -31,12 +67,12 @@
       "rules": {}
     },
     {
-      "files": ["*.js", "*.jsx"],
+      "files": ["*.js"],
       "extends": ["plugin:@nx/javascript"],
       "rules": {}
     },
     {
-      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+      "files": ["*.spec.ts", "*.spec.js"],
       "env": {
         "jest": true
       },
@@ -44,3 +80,4 @@
     }
   ]
 }
+/* eslint-disable  @typescript-eslint/no-explicit-any */

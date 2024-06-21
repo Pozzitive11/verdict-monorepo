@@ -26,12 +26,12 @@
               <li>
                 <div class="col-auto" style="margin: 10px">
                   <div class="row-cols-auto">
-                    <protected-link
+                    <app-protected-link
                       (click)="goToPage(page)"
                       [classNames]="'nav-link pointer'"
                       [link]="page"
                       ngbDropdownItem
-                    ></protected-link>
+                    ></app-protected-link>
                   </div>
                 </div>
               </li>
@@ -56,7 +56,7 @@
           <ng-container *ngIf="links.length < 5">
             <ng-container *ngFor="let link of links">
               <li class="nav-item" *ngIf="link.link">
-                <protected-link [classNames]="'nav-link pointer'" [link]="link"></protected-link>
+                <app-protected-link [classNames]="'nav-link pointer'" [link]="link"></app-protected-link>
               </li>
               <ng-container *ngIf="!link.link">
                 <li class="nav-link" ngbDropdown>
@@ -66,12 +66,12 @@
                   <ul ngbDropdownMenu>
                     <ng-container *ngFor="let link of link.child_links">
                       <li>
-                        <protected-link
+                        <app-protected-link
                           [classNames]="'nav-link pointer'"
                           [link]="link"
                           (click)="currentReport = link.name"
                           ngbDropdownItem
-                        ></protected-link>
+                        ></app-protected-link>
                       </li>
                     </ng-container>
                   </ul>
@@ -89,12 +89,12 @@
               <ul ngbDropdownMenu>
                 <ng-container *ngFor="let link of links">
                   <li *ngIf="link.link">
-                    <protected-link
+                    <app-protected-link
                       [classNames]="'nav-link pointer'"
                       [link]="link"
                       (click)="currentReport = link.name"
                       ngbDropdownItem
-                    ></protected-link>
+                    ></app-protected-link>
                   </li>
                   <ng-container *ngIf="!link.link">
                     <li class="nav-link dropend" style="padding: 0 16px 0" ngbDropdown>
@@ -104,12 +104,12 @@
                       <ul ngbDropdownMenu>
                         <ng-container *ngFor="let link of link.child_links">
                           <li>
-                            <protected-link
+                            <app-protected-link
                               [classNames]="'nav-link pointer'"
                               [link]="link"
                               (click)="currentReport = link.name"
                               ngbDropdownItem
-                            ></protected-link>
+                            ></app-protected-link>
                           </li>
                         </ng-container>
                       </ul>

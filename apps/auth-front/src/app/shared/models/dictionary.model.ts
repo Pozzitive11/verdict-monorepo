@@ -1,5 +1,4 @@
-
 export interface DictionaryModel {
-  id: number
-  name: string
+  id: number;
+  name: string;
 }

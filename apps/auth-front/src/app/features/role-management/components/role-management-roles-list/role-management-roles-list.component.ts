@@ -1,11 +1,11 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { CommonModule } from '@angular/common';
-import { RoleManagementRoleService } from '@features/role-management/services/role-management-role.service';
-import { RoleManagementRoleComponent } from '../role-management-role/role-management-role.component';
+import { Component, OnInit, inject } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { NgSelectModule } from "@ng-select/ng-select";
+import { CommonModule } from "@angular/common";
+import { RoleManagementRoleService } from "@features/role-management/services/role-management-role.service";
+import { RoleManagementRoleComponent } from "../role-management-role/role-management-role.component";
 @Component({
-  selector: 'app-role-management-roles-list',
+  selector: "app-role-management-roles-list",
   standalone: true,
   imports: [
     CommonModule,
@@ -13,8 +13,8 @@ import { RoleManagementRoleComponent } from '../role-management-role/role-manage
     NgSelectModule,
     RoleManagementRoleComponent,
   ],
-  templateUrl: './role-management-roles-list.component.html',
-  styleUrl: './role-management-roles-list.component.css',
+  templateUrl: "./role-management-roles-list.component.html",
+  styleUrl: "./role-management-roles-list.component.css",
 })
 export class RoleManagementRolesListComponent implements OnInit {
   protected roleManagementRoleService = inject(RoleManagementRoleService);

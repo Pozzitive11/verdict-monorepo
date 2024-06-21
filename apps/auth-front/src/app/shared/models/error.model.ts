@@ -1,16 +1,15 @@
-
 export interface ErrorModel {
   error: {
-    detail: string
-  }
+    detail: string;
+  };
 }
 
 export interface AsyncErrorModel {
   error: {
-    text: () => Promise<string>
-  }
+    text: () => Promise<string>;
+  };
 }
 
 export const isAsyncErrorModel = (error: any): error is AsyncErrorModel => {
-  return error.error && error.error.text
-}
+  return error.error && error.error.text;
+};
