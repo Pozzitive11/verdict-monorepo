@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Component, Input, inject } from '@angular/core';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
-import { UserManagementUserRolesService } from '../../services/user-management-user-roles.service';
-import { Role } from '../../../role-management/models/role.model';
-import { RoleManagementHttpService } from '../../../role-management/services/role-management-http.service';
+import { Role } from '@features/role-management/models/role.model';
+import { RoleManagementHttpService } from '@features/role-management/services/role-management-http.service';
+import { UserManagementUserRolesService } from '@features/user-management/services/user-management-user-roles.service';
 
 @Component({
   selector: 'app-user-management-role',

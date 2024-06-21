@@ -1,10 +1,9 @@
 import { DestroyRef, Injectable, inject } from '@angular/core';
 import { BehaviorSubject, catchError, from, of, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MessageHandlingService } from '../../../shared/services/message-handling.service';
-import { UserManagementHttpService } from './user-management-http.service';
+import { MessageHandlingService } from '@shared/services/message-handling.service';
 import { User } from '../models/user.model';
+import { UserManagementHttpService } from './user-management-http.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +11,6 @@ import { User } from '../models/user.model';
 export class UserManagementUserService {
   private userManagementHttpService = inject(UserManagementHttpService);
   private destroyRef = inject(DestroyRef);
-  private modalService = inject(NgbModal);
   private messageService = inject(MessageHandlingService);
 
   private _users$ = new BehaviorSubject<User[]>([]);

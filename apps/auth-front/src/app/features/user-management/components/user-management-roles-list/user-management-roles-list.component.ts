@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserManagementUserRolesService } from '@features/user-management/services/user-management-user-roles.service';
+import { ModalComponent } from '@shared/components/modal/modal.component';
 import { UserManagementRoleComponent } from '../user-management-role/user-management-role.component';
-import { UserManagementUserRolesService } from '../../services/user-management-user-roles.service';
-import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-user-management-roles-list',

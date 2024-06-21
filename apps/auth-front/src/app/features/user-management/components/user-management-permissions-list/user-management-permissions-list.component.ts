@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RoleManagementPermissionService } from '@features/role-management/services/role-management-permission.service';
+import { UserManagementUserPermissionsService } from '@features/user-management/services/user-management-user-permissions.service';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ModalComponent } from '@shared/components/modal/modal.component';
 import { UserManagementRoleComponent } from '../user-management-role/user-management-role.component';
-import { UserManagementUserPermissionsService } from '../../services/user-management-user-permissions.service';
-import { User } from '../../models/user.model';
-import { RoleManagementPermissionService } from '../../../role-management/services/role-management-permission.service';
-import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { User } from '@features/user-management/models/user.model';
 
 @Component({
   selector: 'app-user-management-permissions-list',

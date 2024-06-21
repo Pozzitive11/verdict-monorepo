@@ -3,11 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
 import { User, UserPermissionByApp, UserRole } from '../models/user.model';
-import {
-  Permission,
-  PermissionByRole,
-} from '../../role-management/models/role.model';
-import { environment } from 'src/environments/environment';
+import { environment } from '@environments/environment';
+import { PermissionByRole } from '@features/role-management/models/role.model';
 
 @Injectable({
   providedIn: 'root',

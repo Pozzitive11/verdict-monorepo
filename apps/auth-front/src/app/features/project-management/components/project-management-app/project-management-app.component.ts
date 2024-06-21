@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { App } from '../../models/project.model';
-import { ProjectManagementAppService } from '../../services/project-management-app.service';
 import { FormsModule } from '@angular/forms';
-import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { App } from '@features/project-management/models/project.model';
+import { ProjectManagementAppService } from '@features/project-management/services/project-management-app.service';
+import { ModalComponent } from '@shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-project-management-app',

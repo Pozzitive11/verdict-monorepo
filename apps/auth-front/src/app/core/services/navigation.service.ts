@@ -1,11 +1,11 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { pageNamesModel } from '../../shared/models/page-names.model';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter, map } from 'rxjs';
 import {
-  NavLinkInfo,
   navLinksDataModel,
-} from '../../shared/models/nav-links-data.model';
+  NavLinkInfo,
+} from '@shared/models/nav-links-data.model';
+import { pageNamesModel } from '@shared/models/page-names.model';
+import { filter, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

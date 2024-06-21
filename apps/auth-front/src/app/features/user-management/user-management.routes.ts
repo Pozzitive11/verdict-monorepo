@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router'
-import { AuthGuard } from '../../core/guards/auth-guard.service'
+import { Routes } from '@angular/router';
+import { AuthGuard } from '@core/guards/auth-guard.service';
 
 export const userManagementRoutes: Routes = [
   {
@@ -7,6 +7,8 @@ export const userManagementRoutes: Routes = [
     canActivate: [AuthGuard],
     title: 'Керування користувачами',
     loadComponent: () =>
-      import('./pages/user-management-page/user-management-page.component').then((m) => m.UserManagementPageComponent)
-  }
-]
+      import(
+        './pages/user-management-page/user-management-page.component'
+      ).then((m) => m.UserManagementPageComponent),
+  },
+];

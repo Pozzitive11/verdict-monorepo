@@ -6,14 +6,14 @@ import {
   SimpleChanges,
   inject,
 } from '@angular/core';
-import { RoleManagementRoleService } from '../../services/role-management-role.service';
 import { CommonModule } from '@angular/common';
-import { Permission, Role } from '../../models/role.model';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { RoleManagementPermissionService } from '../../services/role-management-permission.service';
-import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
-import { UtilFunctions } from 'src/app/shared/utils/util.functions';
+import { Role } from '@features/role-management/models/role.model';
+import { RoleManagementPermissionService } from '@features/role-management/services/role-management-permission.service';
+import { RoleManagementRoleService } from '@features/role-management/services/role-management-role.service';
+import { ModalComponent } from '@shared/components/modal/modal.component';
+import { UtilFunctions } from '@shared/utils/util.functions';
 
 @Component({
   selector: 'app-role-management-role',

@@ -2,13 +2,11 @@ import { DestroyRef, Injectable, inject } from '@angular/core';
 import { BehaviorSubject, catchError, from, of, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MessageHandlingService } from '../../../shared/services/message-handling.service';
+import { MessageHandlingService } from '@shared/services/message-handling.service';
+import { UserRole } from '../models/user.model';
 import { UserManagementHttpService } from './user-management-http.service';
-import { User, UserRole } from '../models/user.model';
-import { Permission, Role } from '../../role-management/models/role.model';
-import { UserManagementUserService } from './user-management-user.service';
 import { UserManagementUserPermissionsService } from './user-management-user-permissions.service';
-import { RoleManagementHttpService } from '../../role-management/services/role-management-http.service';
+import { UserManagementUserService } from './user-management-user.service';
 
 @Injectable({
   providedIn: 'root',

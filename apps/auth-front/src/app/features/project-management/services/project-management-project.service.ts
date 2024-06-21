@@ -4,7 +4,7 @@ import { BehaviorSubject, catchError, from, of, tap } from 'rxjs';
 import { ProjectManagementHttpService } from './project-management-http.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MessageHandlingService } from '../../../shared/services/message-handling.service';
+import { MessageHandlingService } from '@shared/services/message-handling.service';
 
 @Injectable({
   providedIn: 'root',

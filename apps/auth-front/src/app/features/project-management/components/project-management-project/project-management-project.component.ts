@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Project } from '../../models/project.model';
-import { ProjectManagementProjectService } from '../../services/project-management-project.service';
+import { Project } from '@features/project-management/models/project.model';
+import { ProjectManagementAppService } from '@features/project-management/services/project-management-app.service';
+import { ProjectManagementProjectService } from '@features/project-management/services/project-management-project.service';
+import { ModalComponent } from '@shared/components/modal/modal.component';
 import { ProjectManagementAppsListComponent } from '../project-management-apps-list/project-management-apps-list.component';
-import { ProjectManagementAppService } from '../../services/project-management-app.service';
-import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 @Component({
   selector: 'app-project-management-project',
   standalone: true,

@@ -2,19 +2,18 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
-import { UtilFunctions } from '../utils/util.functions';
-import { DictionaryFullModel } from '../models/dictionary-full.model';
 import {
+  DataChange,
   GlobalFilters,
+  PaymentsProcessingInfo,
+  ProcessInfoModel,
+  ServerBasicResponse,
   ServerDataModel,
   UpdateInfo,
-  ProcessInfoModel,
-  DataChange,
-  ServerBasicResponse,
-  PaymentsProcessingInfo,
-  ServerDataStringList,
-} from '../../data-models/server-data.model';
-import { environment } from 'src/environments/environment';
+} from '@shared/models/server-data.model';
+import { UtilFunctions } from '@shared/utils/util.functions';
+import { DictionaryFullModel } from '@shared/models/dictionary-full.model';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root',
