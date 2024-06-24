@@ -21,11 +21,12 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "module": "es2020",
+    "useUnknownInCatchVariables": false,
     "paths": {
       "@core/*": ["src/app/core/*"],
       "@features/*": ["src/app/features/*"],
       "@shared/*": ["src/app/shared/*"],
-      "@environments/*": ["src/environments/*"]
+      "@global-shared/*": ["../../shared/src/*"]
     }
   },
   "files": [],

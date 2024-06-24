@@ -1,1 +1,4 @@
-export * from './lib/shared/shared.component';
+export * from "./services";
+export * from "./models";
+export * from "./utils";
+export * from "./components";

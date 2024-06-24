@@ -1,7 +1,7 @@
 import { Component, inject } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { RoleManagementRoleService } from "@features/role-management/services/role-management-role.service";
-import { ModalComponent } from "@shared/components/modal/modal.component";
+import { ModalComponent } from "@global-shared/components";
 
 @Component({
   selector: "app-role-management-create-role",

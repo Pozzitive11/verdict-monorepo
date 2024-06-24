@@ -7,8 +7,8 @@ import {
 
 import { exhaustMap, take } from "rxjs";
 import { NO_TOKEN } from "@core/models/no-token.function";
-import { User } from "@core/models/user.model";
-import { AuthService } from "@core/services/auth.service";
+import { AuthService } from "@global-shared/services";
+import { User } from "@global-shared/models";
 
 @Injectable({
   providedIn: "root",

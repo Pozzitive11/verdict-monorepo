@@ -2,9 +2,9 @@ import { DestroyRef, inject } from "@angular/core";
 import { BehaviorSubject, catchError, from, of, tap } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { MessageHandlingService } from "@shared/services/message-handling.service";
 import { App, NewApp, UpdateApp } from "../models/project.model";
 import { ProjectManagementHttpService } from "./project-management-http.service";
+import { MessageHandlingService } from "@global-shared/services";
 
 // @Injectable({
 //   providedIn: 'root'

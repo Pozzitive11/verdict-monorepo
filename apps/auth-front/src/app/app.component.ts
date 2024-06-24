@@ -1,12 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "./core/services/auth.service";
-import { SideNavToggle } from "./shared/models/side-nav-toggle.model";
-import { NavigationService } from "./core/services/navigation.service";
 import { NgIf } from "@angular/common";
 import { RouterOutlet } from "@angular/router";
-import { HeaderComponent } from "./shared/components/header/header.component";
-import { AuthComponent } from "./shared/components/auth/auth.component";
-import { MessageBoxComponent } from "./shared/components/message-box/message-box.component";
+import {
+  HeaderComponent,
+  AuthComponent,
+  MessageBoxComponent,
+} from "@global-shared/components";
+import { SideNavToggle } from "@global-shared/models";
+import { AuthService, NavigationService } from "@global-shared/services";
 
 @Component({
   selector: "app-root",

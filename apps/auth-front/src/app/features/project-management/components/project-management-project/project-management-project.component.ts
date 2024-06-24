@@ -4,8 +4,8 @@ import { FormsModule } from "@angular/forms";
 import { Project } from "@features/project-management/models/project.model";
 import { ProjectManagementAppService } from "@features/project-management/services/project-management-app.service";
 import { ProjectManagementProjectService } from "@features/project-management/services/project-management-project.service";
-import { ModalComponent } from "@shared/components/modal/modal.component";
 import { ProjectManagementAppsListComponent } from "../project-management-apps-list/project-management-apps-list.component";
+import { ModalComponent } from "@global-shared/components";
 @Component({
   selector: "app-project-management-project",
   standalone: true,

@@ -3,7 +3,7 @@ import { FormsModule, NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { NgbProgressbar } from "@ng-bootstrap/ng-bootstrap";
 import { NgIf } from "@angular/common";
-import { AuthService } from "@core/services/auth.service";
+import { AuthService } from "../../services";
 
 @Component({
   selector: "app-auth",

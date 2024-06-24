@@ -6,7 +6,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { App } from "../../project-management/models/project.model";
 import { RoleManagementRoleService } from "./role-management-role.service";
-import { MessageHandlingService } from "../../../shared/services/message-handling.service";
+import { MessageHandlingService } from "@global-shared/services";
 
 @Injectable({
   providedIn: "root",

@@ -5,9 +5,9 @@ import { RoleManagementPermissionService } from "@features/role-management/servi
 import { UserManagementUserPermissionsService } from "@features/user-management/services/user-management-user-permissions.service";
 import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { ModalComponent } from "@shared/components/modal/modal.component";
 import { UserManagementRoleComponent } from "../user-management-role/user-management-role.component";
 import { User } from "@features/user-management/models/user.model";
+import { ModalComponent } from "@global-shared/components";
 
 @Component({
   selector: "app-user-management-permissions-list",

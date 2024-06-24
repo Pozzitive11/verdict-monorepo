@@ -1,10 +1,12 @@
 import { Component, inject, TemplateRef } from "@angular/core";
 import { NgbOffcanvas, NgbTooltip } from "@ng-bootstrap/ng-bootstrap";
 import { NgFor, NgIf } from "@angular/common";
-import { UtilFunctions } from "@shared/utils/util.functions";
-import { AuthService } from "@core/services/auth.service";
-import { MessageHandlingService } from "@shared/services/message-handling.service";
-import { PpHttpClientService } from "@shared/services/pp-http-client.service";
+import {
+  PpHttpClientService,
+  MessageHandlingService,
+  AuthService,
+} from "../../services";
+import { UtilFunctions } from "../../utils";
 
 @Component({
   selector: "app-account-info",

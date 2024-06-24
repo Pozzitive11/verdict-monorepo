@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, enableProdMode, LOCALE_ID } from "@angular/core";
 
-import { environment } from "./environments/environment";
+import { environment } from "../../../environments/environment";
 import { AppComponent } from "./app/app.component";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";
@@ -14,7 +14,7 @@ import { ActivatedRouteSnapshot, provideRouter } from "@angular/router";
 import { appRoutes } from "./app/app.routes";
 import { registerLocaleData } from "@angular/common";
 import localeUk from "@angular/common/locales/uk";
-import { AuthService } from "./app/core/services/auth.service";
+import { AuthService } from "@global-shared/services";
 
 registerLocaleData(localeUk);
 

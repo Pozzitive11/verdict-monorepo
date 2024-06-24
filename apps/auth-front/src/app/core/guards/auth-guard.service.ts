@@ -4,7 +4,7 @@ import {
   CanActivateFn,
   RouterStateSnapshot,
 } from "@angular/router";
-import { AuthService } from "@core/services/auth.service";
+import { AuthService } from "@global-shared/services";
 
 export const AuthGuard: CanActivateFn = async (
   _route: ActivatedRouteSnapshot,
@@ -12,7 +12,7 @@ export const AuthGuard: CanActivateFn = async (
 ) => {
   const auth = inject(AuthService);
 
-  if (!auth.isAuthorized) auth.autoLogIn(state.url);
+  // if (!auth.isAuthorized) auth.autoLogIn(state.url);
   if (!auth.isAuthorized) return true;
 
   if (!auth.loadedUser) {

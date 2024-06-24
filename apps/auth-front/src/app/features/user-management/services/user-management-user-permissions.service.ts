@@ -9,7 +9,7 @@ import {
 import { UserManagementUserService } from "./user-management-user.service";
 import { App } from "../../project-management/models/project.model";
 import { UserManagementHttpService } from "./user-management-http.service";
-import { MessageHandlingService } from "@shared/services/message-handling.service";
+import { MessageHandlingService } from "@global-shared/services";
 
 @Injectable({
   providedIn: "root",

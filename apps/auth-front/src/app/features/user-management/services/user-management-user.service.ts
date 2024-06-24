@@ -1,9 +1,9 @@
 import { DestroyRef, Injectable, inject } from "@angular/core";
 import { BehaviorSubject, catchError, from, of } from "rxjs";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { MessageHandlingService } from "@shared/services/message-handling.service";
 import { User } from "../models/user.model";
 import { UserManagementHttpService } from "./user-management-http.service";
+import { MessageHandlingService } from "@global-shared/services";
 
 @Injectable({
   providedIn: "root",

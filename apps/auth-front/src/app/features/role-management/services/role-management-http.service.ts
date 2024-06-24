@@ -4,7 +4,7 @@ import { Injectable, inject } from "@angular/core";
 
 import { Permission, PermissionByRole, Role } from "../models/role.model";
 import { App } from "../../project-management/models/project.model";
-import { environment } from "src/environments/environment";
+import { environment } from "../../../../../../../environments/environment";
 
 @Injectable({
   providedIn: "root",

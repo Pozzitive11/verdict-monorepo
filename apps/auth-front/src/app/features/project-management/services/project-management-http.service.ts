@@ -4,7 +4,7 @@ import { Injectable, inject } from "@angular/core";
 
 import { App, NewApp, Project, UpdateApp } from "../models/project.model";
 import { Observable } from "rxjs";
-import { environment } from "@environments/environment";
+import { environment } from "../../../../../../../environments/environment";
 
 @Injectable({
   providedIn: "root",

@@ -8,14 +8,11 @@ import {
   NgbDropdownMenu,
   NgbDropdownToggle,
 } from "@ng-bootstrap/ng-bootstrap";
-import { AuthService } from "@core/services/auth.service";
-import { NavigationService } from "@core/services/navigation.service";
-import {
-  NavLinkInfo,
-  navLinksDataModel,
-} from "@shared/models/nav-links-data.model";
+
 import { AccountInfoComponent } from "../account-info/account-info.component";
 import { ProtectedLinkComponent } from "../protected-link/protected-link.component";
+import { NavLinkInfo, navLinksDataModel } from "../../models";
+import { AuthService, NavigationService } from "../../services";
 
 @Component({
   selector: "app-header",

@@ -12,8 +12,8 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { Role } from "@features/role-management/models/role.model";
 import { RoleManagementPermissionService } from "@features/role-management/services/role-management-permission.service";
 import { RoleManagementRoleService } from "@features/role-management/services/role-management-role.service";
-import { ModalComponent } from "@shared/components/modal/modal.component";
-import { UtilFunctions } from "@shared/utils/util.functions";
+import { UtilFunctions } from "@global-shared/utils";
+import { ModalComponent } from "@global-shared/components";
 
 @Component({
   selector: "app-role-management-role",

@@ -1,7 +1,7 @@
 import { Component, computed, inject } from "@angular/core";
 import { NgFor, NgIf } from "@angular/common";
 import { NgbToast } from "@ng-bootstrap/ng-bootstrap";
-import { MessageHandlingService } from "@shared/services/message-handling.service";
+import { MessageHandlingService } from "../../services";
 
 @Component({
   selector: "app-message-box",

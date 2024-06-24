@@ -3,9 +3,9 @@ import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, tap } from "rxjs";
 import { jwtDecode } from "jwt-decode";
-import { User, UserToken } from "@core/models/user.model";
-import { environment } from "@environments/environment";
-import { AuthResponseData } from "@shared/models/server-data.model";
+import { environment } from "../../../environments/environment";
+import { User, UserToken } from "../models/user.model";
+import { AuthResponseData } from "../models/server-data.model";
 @Injectable({
   providedIn: "root",
 })
@@ -26,10 +26,10 @@ export class AuthService {
   }
 
   checkAccess(pageInfo: { page: string; token: string }) {
-    interface AccessInfo {
-      access: boolean;
-      pageToNavigate?: string;
-    }
+    // interface AccessInfo {
+    //   access: boolean;
+    //   pageToNavigate?: string;
+    // }
 
     return this.http.post<any>(this.url + "/verify_code", pageInfo);
   }
@@ -60,7 +60,7 @@ export class AuthService {
     this.route.navigate(["/"]);
   }
 
-  autoLogIn(mainPage = "") {
+  autoLogIn() {
     const user_data = localStorage.getItem("user");
     if (!user_data) {
       this.isAuthorized = false;
