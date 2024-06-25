@@ -12,7 +12,7 @@ export const appRoutes: Routes = [
       {
         path: "login",
         loadChildren: () =>
-          import("./../../../../shared/src/index").then(m => m.AuthComponent),
+          import("@global-shared/index").then(m => m.AuthComponent),
         title: "Вхід",
       },
       {
@@ -40,8 +40,8 @@ export const appRoutes: Routes = [
   },
   {
     path: "**",
-    loadChildren: () =>
-      import("./../../../../shared/src/index").then(m => m.Page404Component),
+    loadComponent: () =>
+      import("@global-shared/index").then(m => m.Page404Component),
     title: "Сторінка не знайдена",
   },
 ];

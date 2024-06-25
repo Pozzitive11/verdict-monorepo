@@ -1,6 +1,6 @@
+import { environment } from "./environments/environment";
 import { APP_INITIALIZER, enableProdMode, LOCALE_ID } from "@angular/core";
 
-import { environment } from "../../../environments/environment";
 import { AppComponent } from "./app/app.component";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { provideAnimations } from "@angular/platform-browser/animations";

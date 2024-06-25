@@ -1,9 +1,9 @@
+import { environment } from "../../../apps/auth-front/src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, tap } from "rxjs";
 import { jwtDecode } from "jwt-decode";
-import { environment } from "../../../environments/environment";
 import { User, UserToken } from "../models/user.model";
 import { AuthResponseData } from "../models/server-data.model";
 @Injectable({

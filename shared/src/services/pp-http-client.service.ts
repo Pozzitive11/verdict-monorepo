@@ -13,7 +13,7 @@ import {
   PaymentsProcessingInfo,
   DictionaryFullModel,
 } from "../models";
-import { environment } from "../../../environments/environment";
+import { environment } from "../../../apps/auth-front/src/environments/environment";
 
 @Injectable({
   providedIn: "root",

@@ -20,6 +20,14 @@
               {
                 "sourceTag": "*",
                 "onlyDependOnLibsWithTags": ["*"]
+              },
+              {
+                "sourceTag": "type:auth-front",
+                "onlyDependOnLibsWithTags": ["type:auth-front", "type:shared"]
+              },
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:shared"]
               }
             ]
           }

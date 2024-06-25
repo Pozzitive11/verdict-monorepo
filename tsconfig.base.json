@@ -28,6 +28,7 @@
     "downlevelIteration": true,
     "noUnusedLocals": false,
     "strictNullChecks": false,
+    "baseUrl": ".",
     "paths": {
       "@angular-monorepo/shared": ["shared/src/index.ts"]
     }
