@@ -6,7 +6,8 @@
     "start": "nx serve",
     "build": "nx build",
     "start-front": "ng serve --configuration developmentOnlyFront",
-    "test": "nx test"
+    "test": "nx test",
+    "build-auth-front": "nx build auth-front --configuration production"
   },
   "private": true,
   "dependencies": {
